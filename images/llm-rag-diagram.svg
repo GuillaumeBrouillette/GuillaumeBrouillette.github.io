@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Hybrid architecture and embedding geometry diagram">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#1f2937"/>
+    </linearGradient>
+
+    <radialGradient id="bubbleA" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0.45"/>
+    </radialGradient>
+    <radialGradient id="bubbleB" cx="40%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#93c5fd" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0.45"/>
+    </radialGradient>
+    <radialGradient id="bubbleC" cx="45%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#a7f3d0" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#14b8a6" stop-opacity="0.45"/>
+    </radialGradient>
+
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrowheadBi" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto-start-reverse">
+      <polygon points="0 0, 10 4, 0 8" fill="#38bdf8"/>
+    </marker>
+    <marker id="axishead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="rgba(226,232,240,0.55)"/>
+    </marker>
+
+    <style>
+      .arrow { stroke: rgba(56,189,248,0.85); stroke-width: 4; fill: none; marker-end: url(#arrowhead); }
+      .arrow-bi { stroke: rgba(56,189,248,0.85); stroke-width: 4; fill: none; marker-start: url(#arrowheadBi); marker-end: url(#arrowheadBi); }
+      .dotA { fill: url(#bubbleA); }
+      .dotB { fill: url(#bubbleB); }
+      .dotC { fill: url(#bubbleC); }
+      .icon { stroke: rgba(226,232,240,0.85); stroke-width: 4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .halo { fill: none; stroke: rgba(255,255,255,0.15); stroke-width: 2; }
+      .synapse { stroke: rgba(226,232,240,0.55); stroke-width: 2; fill: none; }
+      .neuron { fill: rgba(226,232,240,0.92); }
+      .llm-shell { fill: rgba(255,255,255,0.04); stroke: rgba(226,232,240,0.85); stroke-width: 4; }
+      .llm-res { fill: rgba(226,232,240,0.12); stroke: rgba(226,232,240,0.85); stroke-width: 3; }
+      .llm-core { fill: rgba(125,211,252,0.18); stroke: rgba(226,232,240,0.85); stroke-width: 3; }
+      .axis { stroke: rgba(226,232,240,0.45); stroke-width: 2; fill: none; marker-end: url(#axishead); }
+      .axis-tick { stroke: rgba(226,232,240,0.35); stroke-width: 1.5; }
+      .emb-point { fill: rgba(56,189,248,0.42); stroke: rgba(103,232,249,0.95); stroke-width: 1.6; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="720" fill="url(#bg)"/>
+
+  <!-- query node: speech bubble + person circle -->
+  <g>
+    <circle class="icon" cx="110" cy="180" r="30"/>
+    <path class="icon" d="M70 250 C90 220, 140 220, 170 250"/>
+    <rect class="icon" x="155" y="120" width="135" height="82" rx="8"/>
+    <path class="icon" d="M195 202 L182 230 L220 202"/>
+  </g>
+
+  <!-- corpus node: document stack -->
+  <g>
+    <path class="icon" d="M90 440 H155 L175 460 V550 H90 Z"/>
+    <path class="icon" d="M155 440 V460 H175"/>
+    <path class="icon" d="M100 472 H160 M100 492 H160 M100 512 H160 M100 532 H150"/>
+
+    <path class="icon" d="M190 450 H255 L275 470 V560 H190 Z"/>
+    <path class="icon" d="M255 450 V470 H275"/>
+    <path class="icon" d="M200 482 H260 M200 502 H260 M200 522 H260 M200 542 H250"/>
+  </g>
+
+  <!-- model node: simplified transformer-style encoder/decoder towers -->
+  <g transform="translate(345 -5) scale(0.88)">
+    <!-- encoder (left, shorter) -->
+    <rect class="llm-shell" x="478" y="132" width="138" height="188" rx="16"/>
+    <rect class="llm-res" x="496" y="154" width="102" height="24" rx="6"/>
+    <rect class="llm-core" x="500" y="186" width="94" height="38" rx="7"/>
+    <rect class="llm-res" x="496" y="234" width="102" height="24" rx="6"/>
+    <rect class="llm-core" x="500" y="266" width="94" height="38" rx="7"/>
+
+    <!-- decoder (right, taller) -->
+    <rect class="llm-shell" x="632" y="108" width="154" height="244" rx="16"/>
+    <rect class="llm-res" x="650" y="130" width="118" height="22" rx="6"/>
+    <rect class="llm-core" x="654" y="158" width="110" height="34" rx="7"/>
+    <rect class="llm-res" x="650" y="198" width="118" height="22" rx="6"/>
+    <rect class="llm-core" x="654" y="226" width="110" height="34" rx="7"/>
+    <rect class="llm-res" x="650" y="266" width="118" height="22" rx="6"/>
+    <rect class="llm-core" x="654" y="294" width="110" height="34" rx="7"/>
+
+    <!-- top projection head -->
+    <rect class="llm-res" x="668" y="82" width="82" height="18" rx="5"/>
+    <rect class="llm-res" x="674" y="56" width="70" height="16" rx="5"/>
+
+    <!-- small bottom rectangles (one per tower) -->
+    <rect class="llm-res" x="520" y="332" width="58" height="16" rx="5"/>
+    <rect class="llm-res" x="682" y="364" width="58" height="16" rx="5"/>
+
+    <!-- intra-tower flow links -->
+    <path class="synapse" d="M547 178 V186 M547 224 V234 M547 258 V266 M547 304 V332"/>
+    <path class="synapse" d="M709 152 V158 M709 192 V198 M709 220 V226 M709 260 V266 M709 288 V294 M709 328 V352 M709 352 V364 M709 108 V100 M709 82 V72"/>
+
+    <!-- encoder-to-decoder link (orthogonal with rounded turns) -->
+    <path class="synapse" d="M598 166 H614 Q624 166 624 176 V224 Q624 236 636 236 H654"/>
+
+  </g>
+
+  <!-- answer node: chat bubble with three dots -->
+  <g>
+    <rect class="icon" x="930" y="500" width="170" height="110" rx="12"/>
+    <path class="icon" d="M978 610 L970 648 L1020 610"/>
+    <circle cx="980" cy="555" r="12" fill="rgba(226,232,240,0.9)"/>
+    <circle cx="1015" cy="555" r="12" fill="rgba(226,232,240,0.9)"/>
+    <circle cx="1050" cy="555" r="12" fill="rgba(226,232,240,0.9)"/>
+  </g>
+
+  <!-- embedding geometry (styled to match monochrome iconography) -->
+  <g>
+    <ellipse class="halo" cx="600" cy="430" rx="185" ry="95"/>
+
+    <!-- coordinate axes to suggest points in R^n -->
+    <path class="axis" d="M445 452 H740"/>
+    <path class="axis" d="M560 510 V345"/>
+    <path class="axis-tick" d="M500 447 V457 M620 447 V457 M680 447 V457"/>
+    <path class="axis-tick" d="M555 470 H565 M555 390 H565"/>
+
+    <circle class="emb-point" cx="520" cy="390" r="13"/>
+    <circle class="emb-point" cx="555" cy="412" r="11"/>
+    <circle class="emb-point" cx="505" cy="435" r="10"/>
+    <circle class="emb-point" cx="565" cy="452" r="9"/>
+
+    <circle class="emb-point" cx="630" cy="390" r="12"/>
+    <circle class="emb-point" cx="665" cy="415" r="10"/>
+    <circle class="emb-point" cx="625" cy="435" r="9"/>
+    <circle class="emb-point" cx="672" cy="452" r="8"/>
+
+    <circle class="emb-point" cx="590" cy="378" r="8"/>
+    <circle class="emb-point" cx="700" cy="422" r="8"/>
+    <circle class="emb-point" cx="605" cy="478" r="8"/>
+  </g>
+
+  <!-- flow: user->LLM, user->embeddings, docs->embeddings, LLM<->embeddings, LLM->answer -->
+  <path class="arrow" d="M305 155 C500 92, 675 150, 762 150"/>
+  <path class="arrow" d="M290 210 C338 292, 380 335, 420 375 L435 385"/>
+
+  <path class="arrow" d="M285 505 C350 520, 398 505, 420 480 L430 470"/>
+
+  <path class="arrow-bi" d="M850 312 C836 350, 815 378, 790 405"/>
+
+  <path class="arrow" d="M1038 220 C1090 285, 1085 390, 1020 488"/>
+
+</svg>

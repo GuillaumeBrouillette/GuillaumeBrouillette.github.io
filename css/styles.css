@@ -1,0 +1,135 @@
+/* ================= GLOBAL ================= */
+
+html {
+  font-size: 1rem; /* Bootstrap default is 1rem (16px); bumped to ~17.6px */
+}
+
+body {
+  padding-top: 56px; /* navbar height */
+}
+
+/* ================= HERO ================= */
+
+.hero {
+  height: 65vh;
+  background-image: url("../images/MDM_torus.webp");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  z-index: 1;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 4px rgba(0,0,0,1);
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 4px rgba(0,0,0,1);
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.footer a {
+  color: rgba(255, 255, 255, 0.85);
+  opacity: 0.6;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: rgba(255, 255, 255, 0.85);
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.footer-icons {
+  display: inline-flex;
+  gap: 12px;
+}
+
+.footer-icons img {
+  width: 24px;
+  height: 24px;
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+}
+
+.footer-icons img:hover {
+  opacity: 1;
+}
+
+.footer-right {
+  font-size: 0.85rem;
+}
+
+
+
+/* ================= CONTENT ================= */
+
+blockquote {
+  border-left: 4px solid var(--bs-primary);
+  padding-left: 1rem;
+  color: var(--bs-secondary-color);
+}
+
+.cv-preview-frame {
+  width: 100%;
+  height: 600px;
+  border: 0;
+}
+
+.research-project-image {
+  width: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+  display: block;
+}
+
+.research-project-text {
+  max-width: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.research-project-row {
+  display: grid;
+  grid-template-columns: 7.5fr 4.5fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.research-project-row--reverse {
+  grid-template-columns: 4.5fr 7.5fr;
+}
+
+.research-project-media {
+  display: flex;
+  justify-content: center;
+}

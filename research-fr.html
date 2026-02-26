@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Recherche – Guillaume Brouillette</title>
+
+    <!-- Stylesheets -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/sandstone/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Scripts -->
+    <script src="js/i18n.js" defer></script>
+    <script src="js/site.js" defer></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div id="navbar-placeholder" data-page="research" data-lang="fr"></div>
+
+    <!-- Hero Section -->
+    <div id="hero-placeholder" data-page="research" data-lang="fr"></div>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+      <!-- Intérêts de recherche -->
+      <section>
+        <h2>Intérêts de recherche</h2>
+        <p>
+          Je m'intéresse principalement au développement de méthodes
+          topologiques et géométriques permettant d'extraire la structure d'un
+          jeu de données, ou encore de comprendre le comportement des systèmes
+          d'apprentissage. Ainsi, mes recherches se situent à l'intersection de
+          la <b>topologie</b>, de l'<b>analyse de données</b> et de l'<b
+            >apprentissage profond</b
+          >.
+        </p>
+      </section>
+
+      <!-- Projets de recherche -->
+      <section class="mt-5">
+        <h2>Projets</h2>
+
+        <article class="research-project-row mt-1">
+          <div class="research-project-text">
+            <h3 class="h5">
+              Les grands modèles de langage et la géométrie des embeddings
+            </h3>
+            <p>
+              Les grands modèles de langage (LLM) encodent des mots, des phrases
+              et des concepts sous forme de vecteurs de grande dimension appelés
+              <i>embeddings</i>. La forme des espaces d'embeddings est loin
+              d'être arbitraire : les relations sémantiques et syntaxiques
+              significatives tendent à s'auto-organiser en structures
+              géométriques.
+            </p>
+            <p class="mb-0">
+              J'étudie ces structures à l'aide d'outils de topologie
+              computationnelle, notamment l'homologie persistante. L'objectif
+              est de mieux comprendre ce qu'un LLM apprend, avec quelle
+              fiabilité il représente les données, et comment sa géométrie
+              interne évolue au cours d'un entraînement. En obtenant une image
+              plus claire de ces structures géométriques, nous pouvons améliorer
+              l'explicabilité et la robustesse des LLM.
+            </p>
+          </div>
+          <div class="research-project-media">
+            <img
+              src="images/llm-rag-diagram.svg"
+              class="img-fluid rounded research-project-image"
+              alt="Diagramme abstrait d'un pipeline LLM"
+            />
+          </div>
+        </article>
+
+        <article
+          class="research-project-row research-project-row--reverse mt-2"
+        >
+          <div class="research-project-media">
+            <img
+              src="images/MDMcircle.svg"
+              class="img-fluid rounded research-project-image"
+              alt="Champ gradient d'une fonction de Morse discrète multidimensionnelle"
+            />
+          </div>
+          <div class="research-project-text">
+            <h3 class="h5">Théorie de Morse discrète multiparamétrique</h3>
+            <p>
+              La théorie de Morse classique étudie comment la topologie d'un
+              espace varie lorsqu'on balaie les ensembles de sous-niveaux d'une
+              fonction à valeurs réelles. Ainsi, elle permet de détecter quand
+              les composantes connexes, les trous ou les vides se forment ou
+              disparaissent. La théorie de Morse discrète transpose ces idées
+              dans un cadre combinatoire, permettant d'analyser la forme de jeux
+              de données complexes de manière efficace d'un point de vue
+              computationnel.
+            </p>
+            <p class="mb-0">
+              Dans ma thèse de doctorat, je développe les fondements théoriques
+              et algorithmiques nécessaires pour étendre ce cadre à un contexte
+              multidimensionnel, où un espace est filtré simultanément par
+              plusieurs fonctions plutôt qu'une seule. Cette théorie généralisée
+              est étroitement liée à l'<b
+                >homologie persistante multiparamètre</b
+              >, qui fournit un moyen de caractériser un jeu de données selon
+              plusieurs descripteurs.
+            </p>
+          </div>
+        </article>
+
+        <article class="research-project-row mt-2">
+          <div class="research-project-text">
+            <h3 class="h5">Fractales multicomplexes</h3>
+            <p>
+              Le plan complexe peut être généralisé en dimensions supérieures à
+              l'aide des nombres multicomplexes, ouvrant ainsi la voie aux
+              fractales en dimensions 4, 8, 16 et au-delà. On peut donc se poser
+              la question : à quoi ressemblent ces fractales et comment
+              peuvent-elles être décrites ?
+            </p>
+            <p class="mb-0">
+              Dans ma thèse de maîtrise, j'explore le monde fascinant des
+              nombres multicomplexes et de leurs fractales associées. En
+              particulier, je classifie les coupes tridimensionnelles
+              principales des ensembles de Mandelbrot généralisés à l'aide
+              d'outils issus des systèmes dynamiques, de l'algèbre et de la
+              géométrie.
+            </p>
+          </div>
+          <div class="research-project-media">
+            <img
+              src="images/Arrowheadbrot.png"
+              class="img-fluid rounded research-project-image"
+              alt="Coupe 3D d'une fractale multicomplexe"
+            />
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+  </body>
+</html>

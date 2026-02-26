@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Research – Guillaume Brouillette</title>
+
+    <!-- Stylesheets -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/sandstone/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Scripts -->
+    <script src="js/i18n.js" defer></script>
+    <script src="js/site.js" defer></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div id="navbar-placeholder" data-page="research" data-lang="en"></div>
+
+    <!-- Hero Section -->
+    <div id="hero-placeholder" data-page="research" data-lang="en"></div>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+      <!-- Research Interests -->
+      <section>
+        <h2>Research interests</h2>
+        <p>
+          I am mainly interested in developing topological and geometrical
+          methods that can extract structure from data and help understand the
+          behavior of learning systems. Therefore, my research sits at the
+          intersection of <b>topology</b>, <b>data analysis</b> and
+          <b>deep learning</b>.
+        </p>
+      </section>
+
+      <!-- Research Projects -->
+      <section class="mt-5">
+        <h2>Projects</h2>
+
+        <article class="research-project-row mt-1">
+          <div class="research-project-text">
+            <h3 class="h5">
+              Large language models and the geometry of embeddings
+            </h3>
+            <p>
+              Large language models (LLMs) map words, sentences, and concepts
+              into high-dimensional vector spaces called embedding spaces. These
+              spaces are far from arbitrary: meaningful semantic and syntactic
+              relationships tend to self-organize into geometric structures.
+            </p>
+            <p class="mb-0">
+              I study these structures using tools from computational topology,
+              notably persistent homology. The goal is to better understand what
+              a LLM learns, how reliably it represents data, and how its
+              internal geometry evolves through training. By obtaining a clearer
+              picture of these geometric structures, we can improve the
+              explainability and robustness of LLMs.
+            </p>
+          </div>
+          <div class="research-project-media">
+            <img
+              src="images/llm-rag-diagram.svg"
+              class="img-fluid rounded research-project-image"
+              alt="Abstract LLM pipeline diagram"
+            />
+          </div>
+        </article>
+
+        <article
+          class="research-project-row research-project-row--reverse mt-2"
+        >
+          <div class="research-project-media">
+            <img
+              src="images/MDMcircle.svg"
+              class="img-fluid rounded research-project-image"
+              alt="Gradient field of a multidimensional discrete Morse function"
+            />
+          </div>
+          <div class="research-project-text">
+            <h3 class="h5">Multiparameter discrete Morse theory</h3>
+            <p>
+              Classical Morse theory studies how the topology of a space changes
+              as one sweeps through the sublevel sets of a real-valued function,
+              tracking when connected components, holes or voids either form or
+              disappear. Discrete Morse theory carries this idea to a
+              combinatorial setting, allowing us to analyze the shape of complex
+              datasets in a computationally efficient way.
+            </p>
+            <p class="mb-0">
+              In my PhD thesis, I develop the theoretical and algorithmic
+              foundations needed to extend this framework to a multidimensional
+              setting, where a space is filtered simultaneously by several
+              functions rather than one. This generalized theory is strongly
+              linked to <b>multiparameter persistent homology</b>, which
+              provides a way to characterize a dataset with respect to multiple
+              descriptors.
+            </p>
+          </div>
+        </article>
+
+        <article class="research-project-row mt-2">
+          <div class="research-project-text">
+            <h3 class="h5">Multicomplex fractals</h3>
+            <p>
+              The complex plane can be extended to higher dimensions using
+              multicomplex numbers, opening the door to fractals in dimensions
+              4, 8, 16, and beyond. This raises the question: what do these
+              higher-dimensional fractals look like and how can they be
+              described?
+            </p>
+            <p class="mb-0">
+              In my master's thesis, I explore the fascinating world of
+              multicomplex numbers and their associated fractals. Notably, I
+              classify the principal 3D slices of the generalized Mandelbrot
+              sets using tools from dynamical systems, algebra and geometry.
+            </p>
+          </div>
+          <div class="research-project-media">
+            <img
+              src="images/Arrowheadbrot.png"
+              class="img-fluid rounded research-project-image"
+              alt="3D slice of a multicomplex fractal"
+            />
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+  </body>
+</html>
