@@ -8,6 +8,12 @@ body {
   padding-top: 56px; /* navbar height */
 }
 
+/* ================= NAVBAR ================= */
+
+.navbar .nav-link.active {
+  color: #93c54b !important;
+}
+
 /* ================= HERO ================= */
 
 .hero {
