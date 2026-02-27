@@ -14,6 +14,23 @@ body {
   color: #93c54b !important;
 }
 
+.navbar-divider {
+  border-top: 1.5px solid #aaa;
+  margin-left: 0;
+  margin-right: 0;
+}
+@media (min-width: 992px) {
+  .navbar-divider {
+    border-top: none;
+    border-left: 1.5px solid #aaa;
+    height: 32px;
+    width: 0;
+    margin: 0 1.25rem;
+    align-self: center;
+    display: inline-block;
+  }
+}
+
 /* ================= HERO ================= */
 
 .hero {
@@ -68,9 +85,12 @@ body {
 }
 
 .footer a:hover {
-  color: rgba(255, 255, 255, 0.85);
   opacity: 1;
   text-decoration: underline;
+}
+
+.footer-icons a {
+  opacity: 1;
 }
 
 .footer-icons {
@@ -81,7 +101,7 @@ body {
 .footer-icons img {
   width: 24px;
   height: 24px;
-  opacity: 0.75;
+  opacity: 0.8;
   transition: opacity 0.2s ease;
 }
 
@@ -91,6 +111,12 @@ body {
 
 .footer-right {
   font-size: 0.85rem;
+}
+
+@media (max-width: 767.98px) {
+  .footer-right {
+    margin-top: 1.25rem;
+  }
 }
 
 

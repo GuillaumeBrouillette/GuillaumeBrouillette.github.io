@@ -66,7 +66,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (page === "home") {
           titleEl.textContent = "Guillaume Brouillette";
-          subtitleEl.textContent = NAV_TRANSLATIONS[lang].position;
+          subtitleEl.innerHTML = NAV_TRANSLATIONS[lang].position.replace(
+            " | ",
+            '<span class="d-none d-md-inline"> | </span><br class="d-md-none">'
+          );
         } else {
           titleEl.textContent = (HERO_TITLES[lang] && HERO_TITLES[lang][page]) || NAV_TRANSLATIONS[lang][page];
           subtitleEl?.remove();
