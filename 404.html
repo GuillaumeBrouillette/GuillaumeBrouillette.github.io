@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guillaume Brouillette</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/images/MDMcircle.svg">
+
+  <!--
+    GitHub Pages serves this file for any path it can't find.
+    It maps the old flat URLs (e.g. /research.html, /index-fr.html) to the new
+    /en/ and /fr/ structure, and otherwise sends visitors to a language home.
+  -->
+  <script>
+    (function () {
+      var p = location.pathname.replace(/^\/+/, "");
+      var m = p.match(/^(index|research|publications|cv|contact)(-fr)?\.html$/);
+      if (m) {
+        var lang = m[2] ? "fr" : "en";
+        location.replace("/" + lang + "/" + m[1] + ".html" + location.hash);
+        return;
+      }
+      var l = (navigator.language || navigator.userLanguage || "fr").toLowerCase();
+      location.replace(l.indexOf("en") === 0 ? "/en/index.html" : "/fr/index.html");
+    })();
+  </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=/fr/index.html">
+  </noscript>
+</head>
+
+<body>
+  <p>Page introuvable — redirection… / Page not found — redirecting…</p>
+  <p>
+    <a href="/fr/index.html">Français</a> ·
+    <a href="/en/index.html">English</a>
+  </p>
+</body>
+
+</html>
