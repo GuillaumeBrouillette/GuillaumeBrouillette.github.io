@@ -10,24 +10,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const page = navbarPlaceholder?.dataset.page || "home";
   const lang = navbarPlaceholder?.dataset.lang || "fr";
 
+  // Build a root-absolute URL for a given page in a given language.
+  const pageUrl = (lng, pg) => `/${lng}/${pg === "home" ? "index" : pg}.html`;
+
   // --------- Insert Navbar ---------
   if (navbarPlaceholder) {
-    fetch("partials/navbar.html")
+    fetch("/partials/navbar.html")
       .then(res => res.text())
       .then(html => {
         navbarPlaceholder.innerHTML = html;
+
+        // Point the brand link to the current-language home page
+        const brand = navbarPlaceholder.querySelector(".navbar-brand");
+        if (brand) brand.href = pageUrl(lang, "home");
 
         // Set active page
         navbarPlaceholder.querySelectorAll(".nav-link[data-page]").forEach(link => {
           if (link.dataset.page === page) link.classList.add("active");
 
           // Update href based on language
-          const p = link.dataset.page;
-          if (lang === "fr") {
-            link.href = p === "home" ? "index-fr.html" : `${p}-fr.html`;
-          } else {
-            link.href = p === "home" ? "index.html" : `${p}.html`;
-          }
+          link.href = pageUrl(lang, link.dataset.page);
 
           // Translate label
           if (link.dataset.key) {
@@ -41,14 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           el.addEventListener("click", e => {
             e.preventDefault();
-            const newLang = el.dataset.lang;
-            let newHref;
-            if (newLang === "fr") {
-              newHref = page === "home" ? "index-fr.html" : `${page}-fr.html`;
-            } else {
-              newHref = page === "home" ? "index.html" : `${page}.html`;
-            }
-            window.location.href = newHref;
+            window.location.href = pageUrl(el.dataset.lang, page);
           });
         });
       });
@@ -56,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ------------------ HERO ------------------
   if (heroPlaceholder) {
-    fetch("partials/hero.html")
+    fetch("/partials/hero.html")
       .then(res => res.text())
       .then(html => {
         heroPlaceholder.innerHTML = html;
@@ -66,10 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (page === "home") {
           titleEl.textContent = "Guillaume Brouillette";
-          subtitleEl.innerHTML = NAV_TRANSLATIONS[lang].position.replace(
-            " | ",
-            '<span class="d-none d-md-inline"> | </span><br class="d-md-none">'
-          );
+          // No subtitle on the home hero; the position still shows in the footer.
+          subtitleEl?.remove();
         } else {
           titleEl.textContent = (HERO_TITLES[lang] && HERO_TITLES[lang][page]) || NAV_TRANSLATIONS[lang][page];
           subtitleEl?.remove();
@@ -79,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ------------------ FOOTER ------------------
 if (footerPlaceholder) {
-  fetch("partials/footer.html")
+  fetch("/partials/footer.html")
     .then(res => res.text())
     .then(html => {
       footerPlaceholder.innerHTML = html;

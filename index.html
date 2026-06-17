@@ -1,73 +1,38 @@
 <!DOCTYPE html>
-<html lang="en" translate="no">
+<html lang="fr">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Guillaume Brouillette</title>
+  <meta name="description" content="Guillaume Brouillette — Ph. D. en mathématiques / PhD in mathematics. Topological data analysis.">
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/bootswatch-sandstone.min.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="canonical" href="https://guillaumebrouillette.com/">
+  <link rel="alternate" hreflang="en" href="https://guillaumebrouillette.com/en/index.html">
+  <link rel="alternate" hreflang="fr" href="https://guillaumebrouillette.com/fr/index.html">
+  <link rel="alternate" hreflang="x-default" href="https://guillaumebrouillette.com/">
+  <link rel="icon" href="/images/MDMcircle.svg">
 
-  <!-- Scripts -->
-  <script src="js/i18n.js" defer></script>
-  <script src="js/site.js" defer></script>
-  <script src="js/bootstrap.bundle.min.js" defer></script>
+  <!-- Detect the browser language and redirect (French is the fallback). -->
+  <script>
+    (function () {
+      var l = (navigator.language || navigator.userLanguage || "fr").toLowerCase();
+      var target = l.indexOf("en") === 0 ? "/en/index.html" : "/fr/index.html";
+      location.replace(target);
+    })();
+  </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=/fr/index.html">
+  </noscript>
 </head>
 
 <body>
-
-  <!-- Navbar -->
-  <div id="navbar-placeholder" data-page="home" data-lang="en"></div>
-
-  <!-- Hero Section -->
-  <div id="hero-placeholder" data-page="home" data-lang="en"></div>
-
-  <!-- Main Content -->
-  <main class="container my-5">
-
-    <!-- Welcome Section -->
-    <section>
-      <h2>Welcome!</h2>
-      <p>
-        I am a postdoctoral researcher and lecturer at Université du Québec à Trois-Rivières (UQTR).
-        My work focuses on <strong>topological data analysis</strong>, especially multiparameter persistent homology,
-        discrete Morse theory, and applications to artificial intelligence.
-      </p>
-    </section>
-
-    <!-- About Me Section -->
-    <section class="mt-4">
-      <h2>Research Snapshot</h2>
-      <p class="mb-1">
-        Here are some of my main research interests:
-      </p>
-      <ul>
-        <li>Computational topology and topological data analysis</li>
-        <li>Discrete Morse theory and multiparameter persistent homology</li>
-        <li>Explainability in deep learning</li>
-        <li>Topological methods for high-dimensional data and large language models</li>
-      </ul>
-    </section>
-
-    <!-- Explore Section -->
-    <section class="mt-4">
-      <h2>Explore my work</h2>
-      <ul>
-        <li><a href="research.html">Research</a></li>
-        <li><a href="publications.html">Publications and talks</a></li>
-        <li><a href="cv.html">See my CV</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </section>
-
-  </main>
-
-  <!-- Footer -->
-  <div id="footer-placeholder"></div>
-
+  <p>Redirection en cours… / Redirecting…</p>
+  <p>
+    <a href="/fr/index.html">Français</a> ·
+    <a href="/en/index.html">English</a>
+  </p>
 </body>
 
 </html>

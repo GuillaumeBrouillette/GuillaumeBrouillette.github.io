@@ -5,7 +5,7 @@ const NAV_TRANSLATIONS = {
     publications: "Works",
     cv: "CV",
     contact: "Contact",
-    position: "Postdoctoral Researcher | Lecturer",
+    position: "PhD in Mathematics",
     university: "Université du Québec à Trois-Rivières"
   },
   fr: {
@@ -14,7 +14,7 @@ const NAV_TRANSLATIONS = {
     publications: "Travaux",
     cv: "CV",
     contact: "Contact",
-    position: "Chercheur postdoctoral | Chargé de cours",
+    position: "Ph. D. en mathématiques",
     university: "Université du Québec à Trois-Rivières"
   }
 };

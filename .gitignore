@@ -1,0 +1,13 @@
+# Editor / OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Claude Code local settings (keep launch.json shared, ignore local permissions)
+.claude/settings.local.json
+
+# Local-only files
+*.local
+
+# Redundant build artifact (Bootstrap ships inside bootswatch-sandstone.min.css)
+css/bootstrap.min.css
