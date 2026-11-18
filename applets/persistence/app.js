@@ -13,7 +13,7 @@
 // 5. page wiring.
 
 import {
-  withCloudStrings, editHint, CloudData, CloudView3D, numberField, actionButtons,
+  CLOUD_STRINGS, withCloudStrings, editHint, CloudData, CloudView3D, numberField, actionButtons,
   attachEdit2D, attachEdit3D, formatNumber, saveCanvasesPNG,
 } from "/applets/cloud.js";
 
@@ -65,6 +65,7 @@ const STRINGS = withCloudStrings({
     notesRead2: "Les points de H<sub>0</sub> représentent les composantes connexes. Elles naissent toutes à <i>r</i> = 0 et l'une d'elles meurt chaque fois que deux composantes fusionnent. Les points de H<sub>1</sub> représentent les cycles qui entourent un trou. Un cycle naît lorsqu'une arête le referme et meurt lorsque des triangles le remplissent. En 3D, les points de H<sub>2</sub> représentent les surfaces fermées qui entourent une cavité. Une telle surface naît lorsqu'un triangle la referme et meurt lorsque des tétraèdres remplissent la cavité. Les classes encore présentes à <i>r</i> = 1 sont placées sur la ligne marquée ∞.",
     notesRead3: "La zone orangée du diagramme contient les classes présentes à l'échelle courante, soit celles dont la naissance est d'au plus <i>r</i> et dont la mort dépasse <i>r</i>. Leur nombre en dimension 0 et en dimension 1 donne les nombres de Betti <i>b</i><sub>0</sub> et <i>b</i><sub>1</sub> du complexe affiché. En 3D, leur nombre en dimension 2 donne le nombre de Betti <i>b</i><sub>2</sub>. Le code-barres présente la même information que le diagramme&nbsp;: chaque barre s'étend de la naissance à la mort d'une classe.",
     notesRead4: "L'homologie est calculée à coefficients dans ℤ/2ℤ. En 2D, le complexe s'arrête aux triangles et l'homologie est calculée en dimensions 0 et 1. En 3D, il s'arrête aux tétraèdres et l'homologie est calculée en dimensions 0, 1 et 2.",
+    notesCloudData: CLOUD_STRINGS.fr.notesCloudData.replace("placent les points sur des courbes, remplacées en 3D par une sphère, deux sphères concentriques et deux arcs situés dans des plans perpendiculaires.", "placent les points sur des courbes. En 3D, le cercle devient une sphère et les lunes, deux arcs situés dans des plans perpendiculaires. Les cercles concentriques ne sont offerts qu'en 2D, car le nombre de points ne suffit pas à échantillonner deux sphères."),
     notesCloudUpdate: "Le diagramme de persistance, le code-barres et les courbes de Betti sont recalculés après chaque modification du nuage. Lorsque ce calcul est trop long pour suivre le déplacement d'un point, seul le complexe est retracé pendant le déplacement et les autres figures sont mises à jour à la fin.",
   },
   en: {
@@ -110,6 +111,7 @@ const STRINGS = withCloudStrings({
     notesRead2: "The points of H<sub>0</sub> represent connected components. They are all born at <i>r</i> = 0 and one of them dies each time two components merge. The points of H<sub>1</sub> represent cycles that enclose a hole. A cycle is born when an edge closes it and dies when triangles fill it. In 3D, the points of H<sub>2</sub> represent closed surfaces that enclose a cavity. Such a surface is born when a triangle closes it and dies when tetrahedra fill the cavity. Classes still present at <i>r</i> = 1 are placed on the line marked ∞.",
     notesRead3: "The orange region of the diagram contains the classes present at the current scale, namely those born at or before <i>r</i> that die after <i>r</i>. Their numbers in dimension 0 and in dimension 1 are the Betti numbers <i>b</i><sub>0</sub> and <i>b</i><sub>1</sub> of the displayed complex. In 3D, their number in dimension 2 is the Betti number <i>b</i><sub>2</sub>. The barcode shows the same information as the diagram: each bar extends from the birth to the death of a class.",
     notesRead4: "Homology is computed with coefficients in ℤ/2ℤ. In 2D, the complex stops at triangles and homology is computed in dimensions 0 and 1. In 3D, it stops at tetrahedra and homology is computed in dimensions 0, 1 and 2.",
+    notesCloudData: CLOUD_STRINGS.en.notesCloudData.replace("place the points on curves, replaced in 3D by a sphere, two concentric spheres and two arcs lying in perpendicular planes.", "place the points on curves. In 3D, the circle becomes a sphere and the moons become two arcs lying in perpendicular planes. The concentric circles are offered in 2D only, since the number of points is too small to sample two spheres."),
     notesCloudUpdate: "The persistence diagram, the barcode and the Betti curves are recomputed after each edit of the cloud. When this computation is too long to follow the dragging of a point, only the complex is redrawn during the drag and the other figures are updated at the end.",
   },
 });

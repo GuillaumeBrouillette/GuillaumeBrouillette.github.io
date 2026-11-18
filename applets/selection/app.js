@@ -45,7 +45,6 @@ const STRINGS = withCloudStrings({
     ovVoronoi: "Diagramme de Voronoï",
     ovFill: "Cellules de Voronoï colorées",
     ovRng: "Graphe de voisinage relatif (RNG)",
-    ovGabriel: "Graphe de Gabriel",
     ovDelaunay: "Triangulation de Delaunay",
     ovVorBounds: "Frontières de Voronoï",
     ovDelFill: "Faces de Delaunay",
@@ -69,6 +68,7 @@ const STRINGS = withCloudStrings({
     legendTitle: "Légende",
     legCorpus: "Corpus",
     legQuery: "Requête",
+    legOrigin: "Origine",
     legSelected: "Sélection RNG-Score",
     legVoronoi: "Voronoï",
     legDelFill: "Faces de Delaunay",
@@ -79,17 +79,17 @@ const STRINGS = withCloudStrings({
     statDpp: "DPP, k = {k} : {m} points",
     statRng: "RNG-Score, α = {a} : {m} points retenus sur {k} demandés",
     statCorpus: "{n} points dans le corpus",
-    warnSlow: "Avec plus de 100 points, le calcul des graphes peut être lent.",
+    warnSlow: "Avec plus de 100 points, le calcul du graphe RNG peut être lent.",
     warnEuclid: "En 3D, la triangulation de Delaunay et le diagramme de Voronoï sont calculés pour la distance euclidienne.",
     warnDelaunay: "La triangulation de Delaunay n'est pas calculée au-delà de 150 points.",
     warnFacets: "Les facettes de Voronoï ne sont pas calculées au-delà de 60 points.",
     warnError: "Erreur dans le calcul de la triangulation de Delaunay :",
     warnRng: "Le graphe RNG n'est pas calculé au-delà de 80 points.",
-    warnGabriel: "Le graphe de Gabriel n'est pas calculé au-delà de 80 points.",
     fileName: "selection-de-voisins",
     notesTitle: "Lecture de la figure",
-    notesMethods: "Le menu « Méthode de référence » met en évidence les points retenus par une méthode de référence. Les <i>k</i> plus proches voisins (<i>k</i>-NN) retiennent les <i>k</i> points les plus proches de la requête. La pertinence marginale maximale (MMR) choisit les points un à un en pondérant, selon le paramètre λ, la proximité à la requête et l'éloignement des points déjà choisis. La sélection gloutonne par processus ponctuel déterminantal (DPP) retient des points à la fois proches de la requête et de directions différentes vues de l'origine. Le menu « Sélection géométrique » applique RNG-Score, qui attribue à chaque point <i>w</i> sa distance à la requête <i>q</i>, augmentée d'une pénalité pour chaque point <i>v</i> plus proche de <i>q</i> que <i>w</i> et situé près de <i>w</i>. Les points de plus petit score sont retenus, ce qui écarte les points redondants.",
-    notesOverlays: "Les cases « Tracés superposés » ajoutent au nuage de points le diagramme de Voronoï, la triangulation de Delaunay, le graphe de Gabriel et le graphe de voisinage relatif (RNG). La section « Apparence » règle les couleurs, les symboles et les traits. Elle permet aussi de placer la légende dans la figure avant de télécharger l'image.",
+    notesMethods: "Le menu « Méthode de référence » met en évidence les points retenus par une méthode de référence. Les <i>k</i> plus proches voisins (<i>k</i>-NN) retiennent les <i>k</i> points les plus proches de la requête. La pertinence marginale maximale (MMR) choisit les points un à un en pondérant, selon le paramètre λ, la proximité à la requête et l'éloignement des points déjà choisis. La sélection gloutonne par processus ponctuel déterminantal (DPP) retient des points à la fois proches de la requête et de directions différentes vues de l'origine. Le menu « Sélection géométrique » applique RNG-Score, qui attribue à chaque point <i>w</i> sa distance à la requête <i>q</i>, augmentée d'une pénalité pour chaque point <i>v</i> plus proche de <i>q</i> que <i>w</i> et situé près de <i>w</i>. Les points de plus petit score sont retenus, ce qui écarte les points redondants. Un point retenu par les deux menus porte le symbole de la sélection géométrique, entouré d'un anneau de la couleur de la méthode de référence.",
+    notesOverlays: "Les cases « Tracés superposés » ajoutent au nuage de points le diagramme de Voronoï, la triangulation de Delaunay et le graphe de voisinage relatif (RNG). La section « Apparence » règle les couleurs, les symboles et les traits. Elle permet aussi de placer la légende dans la figure avant de télécharger l'image.",
+    notesCosine: "La distance cosinus vaut 1 − cos θ, où θ est l'angle entre deux points vus de l'origine. Elle ne dépend donc que de la direction des points et non de leur distance à l'origine. Lorsqu'elle est choisie, l'origine est tracée en violet et une demi-droite grise la joint à la requête&nbsp;: les points proches de la requête sont ceux dont la direction est voisine de cette demi-droite.",
     notesRefTitle: "Référence",
     notesRef: `RNG-Score est présenté dans la prépublication G. Brouillette, F. Kagabo, U. Faghihi et N. Ghazzali, <i>Finding the Right Balance: Relevance and Diversity in LLM Retrieval</i>, 2026, <a href="${ARXIV}" target="_blank" rel="noopener noreferrer">arXiv:2610.09412</a>. Le code des expériences est disponible sur <a href="${CODE}" target="_blank" rel="noopener noreferrer">GitHub</a>.`,
   },
@@ -114,7 +114,6 @@ const STRINGS = withCloudStrings({
     ovVoronoi: "Voronoi diagram",
     ovFill: "Coloured Voronoi cells",
     ovRng: "Relative neighbourhood graph (RNG)",
-    ovGabriel: "Gabriel graph",
     ovDelaunay: "Delaunay triangulation",
     ovVorBounds: "Voronoi boundaries",
     ovDelFill: "Delaunay faces",
@@ -138,6 +137,7 @@ const STRINGS = withCloudStrings({
     legendTitle: "Legend",
     legCorpus: "Corpus",
     legQuery: "Query",
+    legOrigin: "Origin",
     legSelected: "RNG-Score selection",
     legVoronoi: "Voronoi",
     legDelFill: "Delaunay faces",
@@ -148,17 +148,17 @@ const STRINGS = withCloudStrings({
     statDpp: "DPP, k = {k}: {m} points",
     statRng: "RNG-Score, α = {a}: {m} points retained of {k} requested",
     statCorpus: "{n} points in the corpus",
-    warnSlow: "With more than 100 points, computing the graphs may be slow.",
+    warnSlow: "With more than 100 points, computing the RNG graph may be slow.",
     warnEuclid: "In 3D, the Delaunay triangulation and the Voronoi diagram are computed for the Euclidean distance.",
     warnDelaunay: "The Delaunay triangulation is not computed beyond 150 points.",
     warnFacets: "The Voronoi facets are not computed beyond 60 points.",
     warnError: "Error in the computation of the Delaunay triangulation:",
     warnRng: "The RNG graph is not computed beyond 80 points.",
-    warnGabriel: "The Gabriel graph is not computed beyond 80 points.",
     fileName: "neighbour-selection",
     notesTitle: "Reading the figure",
-    notesMethods: "The menu \"Baseline method\" marks the points retained by a baseline method. The <i>k</i> nearest neighbours (<i>k</i>-NN) retain the <i>k</i> points closest to the query. Maximal marginal relevance (MMR) chooses the points one by one by weighting, according to the parameter λ, the proximity to the query and the distance to the points already chosen. Greedy selection with a determinantal point process (DPP) retains points that are both close to the query and in different directions as seen from the origin. The menu \"Geometric selection\" applies RNG-Score, which assigns to each point <i>w</i> its distance to the query <i>q</i>, increased by a penalty for each point <i>v</i> that is closer to <i>q</i> than <i>w</i> and located near <i>w</i>. The points with the smallest scores are retained, which discards redundant points.",
-    notesOverlays: "The boxes \"Overlays\" add to the point cloud the Voronoi diagram, the Delaunay triangulation, the Gabriel graph and the relative neighbourhood graph (RNG). The section \"Appearance\" sets the colours, the symbols and the line styles. It also allows the legend to be placed inside the figure before the image is downloaded.",
+    notesMethods: "The menu \"Baseline method\" marks the points retained by a baseline method. The <i>k</i> nearest neighbours (<i>k</i>-NN) retain the <i>k</i> points closest to the query. Maximal marginal relevance (MMR) chooses the points one by one by weighting, according to the parameter λ, the proximity to the query and the distance to the points already chosen. Greedy selection with a determinantal point process (DPP) retains points that are both close to the query and in different directions as seen from the origin. The menu \"Geometric selection\" applies RNG-Score, which assigns to each point <i>w</i> its distance to the query <i>q</i>, increased by a penalty for each point <i>v</i> that is closer to <i>q</i> than <i>w</i> and located near <i>w</i>. The points with the smallest scores are retained, which discards redundant points. A point retained by both menus carries the symbol of the geometric selection, surrounded by a ring in the colour of the baseline method.",
+    notesOverlays: "The boxes \"Overlays\" add to the point cloud the Voronoi diagram, the Delaunay triangulation and the relative neighbourhood graph (RNG). The section \"Appearance\" sets the colours, the symbols and the line styles. It also allows the legend to be placed inside the figure before the image is downloaded.",
+    notesCosine: "The cosine distance is 1 − cos θ, where θ is the angle between two points as seen from the origin. It therefore depends only on the direction of the points and not on their distance to the origin. When it is chosen, the origin is drawn in purple and a grey ray joins it to the query: the points close to the query are those whose direction is near this ray.",
     notesRefTitle: "Reference",
     notesRef: `RNG-Score is introduced in the preprint G. Brouillette, F. Kagabo, U. Faghihi and N. Ghazzali, <i>Finding the Right Balance: Relevance and Diversity in LLM Retrieval</i>, 2026, <a href="${ARXIV}" target="_blank" rel="noopener noreferrer">arXiv:2610.09412</a>. The code of the experiments is available on <a href="${CODE}" target="_blank" rel="noopener noreferrer">GitHub</a>.`,
   },
@@ -279,7 +279,6 @@ addHtml(`
     ${checkBox("show-vor", "ovVoronoi", "vor-row")}
     ${checkBox("fill-cells", "ovFill", "fill-row")}
     ${checkBox("show-rng", "ovRng")}
-    ${checkBox("show-gab", "ovGabriel")}
     ${checkBox("show-del", "ovDelaunay")}
     ${checkBox("show-vor-bounds", "ovVorBounds", "vor-bounds-row")}
     ${checkBox("fill-del-3d", "ovDelFill", "del-fill-row")}
@@ -296,7 +295,6 @@ addHtml(`
       ${symbolRow(t("styleSelected"), "sel", "#31a354")}
       ${lineRow(t("legVoronoi"), "vor", "#bdbdbd", "solid", 1, "vor-style-row")}
       ${lineRow("RNG", "rng", "#cb181d", "solid", 1)}
-      ${lineRow("Gabriel", "gab", "#fc4e2a", "dotted", 1)}
       ${lineRow("Delaunay", "del", "#4292c6", "dashed", 1)}
       ${lineRow(t("ovVorBounds"), "vb", "#aaaaaa", "solid", 0.5, "vor-bounds-style-row")}
       ${fillRow(t("ovDelFill"), "delf", "#4292c6", "del-fill-style-row")}
@@ -456,23 +454,6 @@ function computeRNG(pts) {
       for (let w = 0; w < n && ok; w++) {
         if (w === i || w === j) continue;
         if (dist(pts[i], pts[w]) < dij && dist(pts[j], pts[w]) < dij) ok = false;
-      }
-      if (ok) edges.push([i, j]);
-    }
-  }
-  return edges;
-}
-
-function computeGabriel(pts) {
-  const n = pts.length, edges = [];
-  for (let i = 0; i < n; i++) {
-    for (let j = i + 1; j < n; j++) {
-      const mid = pts[i].map((v, k) => (v + pts[j][k]) / 2);
-      const r2  = dist(pts[i], pts[j]) ** 2 / 4;
-      let ok = true;
-      for (let w = 0; w < n && ok; w++) {
-        if (w === i || w === j) continue;
-        if (dist(pts[w], mid) ** 2 < r2) ok = false;
       }
       if (ok) edges.push([i, j]);
     }
@@ -1049,6 +1030,15 @@ function buildBoundaryPath(rasterAssign, RES, S) {
 // ════════════════════════════════════════════════════════════════
 // 2D Render
 // ════════════════════════════════════════════════════════════════
+// Mark of the origin and guide of the cosine distance (as in the applette on
+// distances): the ray from the origin through the query, up to the edge of
+// the domain [-1, 1]^d.
+const ORIGIN_COLOUR='#800080', GUIDE_COLOUR='#8e8c84';
+function cosineRayEnd(q) {
+  const reach=Math.max(...q.map(Math.abs));
+  return reach>1e-9 ? q.map(x=>x/reach) : null;
+}
+
 function render2D() {
   const s=settings();
   const {showQ,qLabel,showKnn,showMmr,showDpp,knnK,knnColor,lambda,algo,alpha,kSel,selColor,S,showLeg}=s;
@@ -1057,12 +1047,10 @@ function render2D() {
   const fillC   = document.getElementById('fill-cells').checked;
   const showVor = document.getElementById('show-vor').checked;
   const showRng = document.getElementById('show-rng').checked;
-  const showGab = document.getElementById('show-gab').checked;
   const showDel = document.getElementById('show-del').checked;
 
   const VC=document.getElementById('vor-c').value, VS=document.getElementById('vor-s').value, VW=parseFloat(document.getElementById('vor-w').value)||1;
   const RC=document.getElementById('rng-c').value, RS=document.getElementById('rng-s').value, RW=parseFloat(document.getElementById('rng-w').value)||1;
-  const GC=document.getElementById('gab-c').value, GS=document.getElementById('gab-s').value, GW=parseFloat(document.getElementById('gab-w').value)||1;
   const DC=document.getElementById('del-c').value, DS=document.getElementById('del-s').value, DW=parseFloat(document.getElementById('del-w').value)||1;
   const PAD=Math.floor(S*0.07), W=S-2*PAD;
   svgParams={PAD,W,S};
@@ -1093,12 +1081,11 @@ function render2D() {
       statParts.push(say('statRng',{a:num(alpha,3),m:sel.length,k:kSel}));
     }
   }
-  if((showRng||showGab)&&n>100) warn='  \u26a0 '+t('warnSlow');
+  if(showRng&&n>100) warn='  \u26a0 '+t('warnSlow');
   document.getElementById('stats').textContent=(statParts.join('  \u00b7  ')||say('statCorpus',{n}))+warn;
 
   // Delaunay/Voronoi: Euclidean/Cosine via d3 (exact), Manhattan/Chebyshev via rasterization
   const rngEdges = showRng ? computeRNG(allPts) : [];
-  const gabEdges = showGab ? computeGabriel(allPts) : [];
   let del=null, vor=null;
   let rasterAssign=null, rasterRES=0, delAdjEdges=null;
   let cosineDelEdges=null;
@@ -1213,13 +1200,16 @@ function render2D() {
     const ln=svgEl('line',{x1:allSpts[i][0],y1:allSpts[i][1],x2:allSpts[j][0],y2:allSpts[j][1]});
     applyEdgeStyle(ln,RC,RW,RS); svg.appendChild(ln);
   }
-  if(showGab) for(const[i,j] of gabEdges) {
-    const ln=svgEl('line',{x1:allSpts[i][0],y1:allSpts[i][1],x2:allSpts[j][0],y2:allSpts[j][1]});
-    applyEdgeStyle(ln,GC,GW,GS); svg.appendChild(ln);
-  }
 
   const knnSym=document.getElementById('knn-sym').value;
   const selSym=document.getElementById('sel-sym').value;
+
+  const cosine=activeMetric==='cosine';
+  if(cosine) {
+    const end=showQ?cosineRayEnd(q):null;
+    if(end) svg.appendChild(svgEl('line',{x1:sx(0),y1:sy(0),x2:sx(end[0]),y2:sy(end[1]),stroke:GUIDE_COLOUR,'stroke-width':2,'stroke-dasharray':'6 4','pointer-events':'none'}));
+    svg.appendChild(svgEl('circle',{cx:sx(0),cy:sy(0),r:5,fill:ORIGIN_COLOUR,stroke:'white','stroke-width':1.5,'pointer-events':'none'}));
+  }
 
   // Corpus points
   for(let i=0;i<n;i++) {
@@ -1254,13 +1244,13 @@ function render2D() {
     const legendEntries=[];
     legendEntries.push({type:'circle',color:'#636363',label:t('legCorpus')});
     if(showQ) legendEntries.push({type:'circle',color:'#2171b5',label:`${t('legQuery')} ${qLabel||'q'}`});
+    if(cosine) legendEntries.push({type:'circle',color:ORIGIN_COLOUR,label:t('legOrigin')});
     if(showQ&&showKnn) legendEntries.push({type:'circle',color:knnColor,symbol:knnSym,label:`k-NN (k=${knnK})`});
     if(showQ&&showMmr) legendEntries.push({type:'circle',color:knnColor,symbol:knnSym,label:`MMR (k=${knnK}, λ=${lambda.toFixed(2)})`});
     if(showQ&&showDpp) legendEntries.push({type:'circle',color:knnColor,symbol:knnSym,label:`DPP (k=${knnK})`});
     if(showQ&&algo!=='none') legendEntries.push({type:'circle',color:selColor,symbol:selSym,label:t('legSelected')});
     if(showVor) legendEntries.push({type:'line',color:VC,style:VS,lw:VW,label:t('legVoronoi')});
     if(showRng) legendEntries.push({type:'line',color:RC,style:RS,lw:RW,label:'RNG'});
-    if(showGab) legendEntries.push({type:'line',color:GC,style:GS,lw:GW,label:'Gabriel'});
     if(showDel) legendEntries.push({type:'line',color:DC,style:DS,lw:DW,label:'Delaunay'});
     showLegendBelow(legendEntries);
     if(showLeg) drawLegend(svg,legendEntries,legendPos2d.x,legendPos2d.y);
@@ -1276,12 +1266,10 @@ function render3D() {
   activeMetric = s.metric;
   const showDel=document.getElementById('show-del').checked;
   const showRng=document.getElementById('show-rng').checked;
-  const showGab=document.getElementById('show-gab').checked;
   const showVB =document.getElementById('show-vor-bounds').checked;
 
   const DC=document.getElementById('del-c').value, DW=parseFloat(document.getElementById('del-w').value)||1;
   const RC=document.getElementById('rng-c').value, RW=parseFloat(document.getElementById('rng-w').value)||1;
-  const GC=document.getElementById('gab-c').value, GW=parseFloat(document.getElementById('gab-w').value)||1;
   const VBC=document.getElementById('vb-c').value, VBW=parseFloat(document.getElementById('vb-w').value)||0.5;
   const fillDel=document.getElementById('fill-del-3d').checked;
   const fillVor=document.getElementById('fill-vor-3d').checked;
@@ -1338,8 +1326,14 @@ function render3D() {
     }
   }
   if(showQ) scene.add(makeSphere(q[0],q[1],q[2],0.025,0x2171b5));
+  const cosine=activeMetric==='cosine';
+  if(cosine) {
+    const end=showQ?cosineRayEnd(q):null;
+    if(end) scene.add(makeAxisLine(0,0,0,end[0],end[1],end[2],hexToInt(GUIDE_COLOUR)));
+    scene.add(makeSphere(0,0,0,0.022,hexToInt(ORIGIN_COLOUR)));
+  }
 
-  const skipRngGab=n>80, skipDel=n>150, skipFacets=n>60;
+  const skipRng=n>80, skipDel=n>150, skipFacets=n>60;
   if(activeMetric!=='euclidean' && (showDel||fillDel||showVB||fillVor)) {
     warns.push(t('warnEuclid'));
   }
@@ -1391,12 +1385,8 @@ function render3D() {
   }
 
   if(showRng) {
-    if(skipRngGab) warns.push(t('warnRng'));
+    if(skipRng) warns.push(t('warnRng'));
     else { const edges=computeRNG(allPts); const l=makeLines3D(edges,allPts,hexToInt(RC),RW); if(l) scene.add(l); }
-  }
-  if(showGab) {
-    if(skipRngGab) warns.push(t('warnGabriel'));
-    else { const edges=computeGabriel(allPts); const l=makeLines3D(edges,allPts,hexToInt(GC),GW); if(l) scene.add(l); }
   }
 
   const warnStr=warns.length?'  \u26a0 '+warns.join(' '):'';
@@ -1411,14 +1401,14 @@ function render3D() {
     const items=[];
     items.push({type:'circle',color:'#636363',label:t('legCorpus')});
     if(showQ) items.push({type:'circle',color:'#2171b5',label:`${t('legQuery')} ${qLabel||'q'}`});
+    if(cosine) items.push({type:'circle',color:ORIGIN_COLOUR,label:t('legOrigin')});
     if(showQ&&showKnn) items.push({type:'circle',color:knnColor,symbol:knnSym,label:`k-NN (k=${knnK})`});
     if(showQ&&showMmr) items.push({type:'circle',color:knnColor,symbol:knnSym,label:`MMR (k=${knnK}, λ=${lambda.toFixed(2)})`});
     if(showQ&&showDpp) items.push({type:'circle',color:knnColor,symbol:knnSym,label:`DPP (k=${knnK})`});
     if(showQ&&algo!=='none') items.push({type:'circle',color:selColor,symbol:selSym,label:t('legSelected')});
     if(showDel&&!skipDel) items.push({type:'line',color:DC,style:document.getElementById('del-s').value,lw:DW,label:'Delaunay'});
     if(fillDel&&!skipDel) items.push({type:'fill',color:DFC,opacity:DFA,label:t('legDelFill')});
-    if(showRng&&!skipRngGab) items.push({type:'line',color:RC,style:document.getElementById('rng-s').value,lw:RW,label:'RNG'});
-    if(showGab&&!skipRngGab) items.push({type:'line',color:GC,style:document.getElementById('gab-s').value,lw:GW,label:'Gabriel'});
+    if(showRng&&!skipRng) items.push({type:'line',color:RC,style:document.getElementById('rng-s').value,lw:RW,label:'RNG'});
     if(showVB&&!skipFacets) items.push({type:'line',color:VBC,style:document.getElementById('vb-s').value,lw:VBW,label:t('legVorBounds')});
     if(fillVor&&!skipFacets) items.push({type:'fill',color:VFC,opacity:VFA,label:t('legVorFill')});
     legend3dEl.innerHTML=buildLegend3D(items);
