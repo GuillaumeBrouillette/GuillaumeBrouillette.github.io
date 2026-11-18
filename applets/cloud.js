@@ -217,13 +217,26 @@ const GENERATORS = {
     return points;
   },
 
-  // Half of the points on the radius SHAPE_RADIUS and half on its half.
+  // Two circles or spheres of radii SHAPE_RADIUS and SHAPE_RADIUS / 2. The
+  // points are shared in proportion to the length of each circle (2/3 and
+  // 1/3) or to the area of each sphere (4/5 and 1/5), so that both are
+  // sampled with the same density. On a circle, each point is drawn in its
+  // own arc of equal length, which avoids the large gaps of independent
+  // draws and lets a small sample show both circles.
   circles(dim, n, rng) {
-    const outer = Math.ceil(n / 2);
+    const share = dim === 3 ? 4 / 5 : 2 / 3;
+    const outer = n < 2 ? n : clamp(Math.round(share * n), 1, n - 1);
     const points = [];
-    for (let i = 0; i < n; i++) {
-      const radius = i < outer ? SHAPE_RADIUS : SHAPE_RADIUS / 2;
-      points.push(direction(dim, rng).map((x) => radius * x));
+    for (const [count, radius] of [[outer, SHAPE_RADIUS], [n - outer, SHAPE_RADIUS / 2]]) {
+      const start = 2 * Math.PI * rng.uniform();
+      for (let i = 0; i < count; i++) {
+        if (dim === 3) {
+          points.push(direction(dim, rng).map((x) => radius * x));
+        } else {
+          const angle = start + (2 * Math.PI * (i + rng.uniform())) / count;
+          points.push([radius * Math.cos(angle), radius * Math.sin(angle)]);
+        }
+      }
     }
     return points;
   },
@@ -446,6 +459,7 @@ export function actionButtons(host, t, { onReset, onDownload }) {
 //
 // options.defaults = { dim, dataset, seed, n, sigma, clusters, noise }
 // options.n = { min, max, max3d }   bounds of the number of points
+// options.hide3d = [ids]            datasets not offered in 3D
 // options.onChange(reason)          reason is "data" (new cloud), "dim" (new
 //                                   dimension, hence new cloud) or "reset"
 export class CloudData {
@@ -453,6 +467,7 @@ export class CloudData {
     this.t = t;
     this.onChange = options.onChange || (() => {});
     this.limits = Object.assign({ min: 4, max: 200, max3d: null }, options.n);
+    this.hide3d = options.hide3d || [];
     this.defaults = Object.assign(
       { dim: 2, dataset: "uniform", seed: 1, n: 50, sigma: 0.4, clusters: 4, noise: 0.1 },
       options.defaults
@@ -554,6 +569,10 @@ export class CloudData {
     this.dimInputs.forEach((input) => {
       input.checked = Number(input.value) === state.dim;
     });
+    // A dataset that is not offered in 3D gives way to its nearest relative.
+    if (state.dim === 3 && this.hide3d.includes(state.dataset)) {
+      state.dataset = state.dataset === "circles" ? "circle" : "uniform";
+    }
     const names = {
       uniform: "dsUniform",
       normal: "dsNormal",
@@ -564,6 +583,7 @@ export class CloudData {
     };
     Array.from(this.datasetSelect.options).forEach((option) => {
       option.textContent = t(names[option.value]);
+      option.hidden = option.disabled = state.dim === 3 && this.hide3d.includes(option.value);
     });
     this.datasetSelect.value = state.dataset;
     this.seedInput.value = String(state.seed);

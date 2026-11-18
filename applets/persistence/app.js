@@ -758,7 +758,9 @@ let view3d = null; // created at the first use of the 3D mode
 
 const cloud = new CloudData(panel, t, {
   defaults: { dim: 2, dataset: "circle", seed: 42, n: 20, noise: 0.1 },
-  n: { min: 4, max: 40, max3d: 30 },
+  n: { min: 4, max: 60, max3d: 40 },
+  // Two spheres cannot be recognised with so few points.
+  hide3d: ["circles"],
   onChange: () => onEdit(false),
 });
 const radiusField = numberField(panel, {
