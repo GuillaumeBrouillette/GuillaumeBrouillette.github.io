@@ -689,6 +689,30 @@ function makeSymbol3D(x,y,z,size,color,symbol) {
   return mesh;
 }
 
+// Ring that always faces the camera, drawn around a point chosen by both
+// methods (the 3D counterpart of the outer ring of the 2D figure).
+const ringTextures=new Map();
+function ringTexture(color) {
+  if(!ringTextures.has(color)) {
+    const c=document.createElement('canvas'); c.width=c.height=128;
+    const g=c.getContext('2d');
+    g.strokeStyle=color; g.lineWidth=18;
+    g.beginPath(); g.arc(64,64,52,0,2*Math.PI); g.stroke();
+    const tex=new THREE.CanvasTexture(c);
+    tex.colorSpace=THREE.SRGBColorSpace;
+    ringTextures.set(color,tex);
+  }
+  return ringTextures.get(color);
+}
+function makeRing3D(x,y,z,radius,color) {
+  const mat=new THREE.SpriteMaterial({map:ringTexture(color),transparent:true,alphaTest:0.3});
+  const sprite=new THREE.Sprite(mat);
+  sprite.scale.set(2*radius,2*radius,1);
+  sprite.position.set(x,y,z);
+  sprite.userData.isSceneObj=true;
+  return sprite;
+}
+
 // Lines using index pairs into a pts array
 function makeLines3D(edges,pts,color,linewidth) {
   if(!edges.length) return null;
@@ -1302,9 +1326,9 @@ function render3D() {
   for(let i=0;i<n;i++) {
     const both=selSet.has(i)&&knnSet.has(i);
     if(both) {
-      // Large outer sphere (knn color) makes dual-selection obvious; inner sel symbol
-      scene.add(makeSphere(pts[i][0],pts[i][1],pts[i][2],0.031,hexToInt(knnColor)));
-      scene.add(makeSymbol3D(pts[i][0],pts[i][1],pts[i][2],0.013,hexToInt(selColor),selSym));
+      // Sel symbol with a ring in the knn colour around it, as in the 2D figure
+      scene.add(makeSymbol3D(pts[i][0],pts[i][1],pts[i][2],0.018,hexToInt(selColor),selSym));
+      scene.add(makeRing3D(pts[i][0],pts[i][1],pts[i][2],0.042,knnColor));
     } else if(selSet.has(i)) {
       scene.add(makeSymbol3D(pts[i][0],pts[i][1],pts[i][2],0.018,hexToInt(selColor),selSym));
     } else if(knnSet.has(i)) {

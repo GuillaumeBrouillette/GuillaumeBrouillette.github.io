@@ -36,12 +36,23 @@
       }
     }
 
-    /* Narrow screens: the shared stylesheet puts the legend and the status
-       lines before the controls. The complex goes there with them, and the
-       other plots come after the controls. */
+    /* Narrow screens: the shared stylesheet puts the status lines before the
+       controls. The complex goes there with them, and the other plots come
+       after the controls. The legend describes the colours of the diagram,
+       the barcode and the Betti curves, so it sits right under the diagram
+       instead of under the complex. */
     @media (max-width: 991.98px) {
       .applet-stage > .persistence-complex {
         order: -2;
+      }
+
+      .applet-stage.persistence-stage > .applet-legend {
+        order: 1;
+        margin-top: 0.5rem;
+      }
+
+      .applet-stage.persistence-stage > .row {
+        order: 2;
       }
     }
   </style>
