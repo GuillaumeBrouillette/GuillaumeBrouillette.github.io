@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr" translate="no">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Théorie de Morse discrète multiparamètre – Guillaume Brouillette</title>
+  <meta name="description" content="Applette interactive&nbsp;: l'algorithme GenerateMDM construit le champ gradient d'une fonction de Morse discrète multiparamètre sur une surface triangulée et affiche ses simplexes critiques, ses composantes critiques et l'ensemble de Pareto. Interactive applet for multiparameter discrete Morse theory.">
+  <link rel="canonical" href="https://guillaumebrouillette.com/applets/mdm/">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/images/MDMcircle.svg">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/bootswatch-sandstone.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/applets/applets.css">
+  <style>
+    .mdm-viewport {
+      position: relative;
+      height: min(72vh, 660px);
+      min-height: 340px;
+      overflow: hidden;
+    }
+    @media (max-width: 575.98px) {
+      .mdm-viewport {
+        height: min(62vh, 105vw);
+        min-height: 300px;
+      }
+    }
+    .mdm-viewport canvas {
+      display: block;
+    }
+    .mdm-error {
+      color: #d9534f;
+      font-size: 0.8rem;
+      margin: -0.1rem 0 0.3rem;
+    }
+    .mdm-error:empty {
+      display: none;
+    }
+    #source:empty {
+      display: none;
+    }
+    .mdm-values {
+      max-height: 22rem;
+      overflow: auto;
+    }
+  </style>
+
+  <!-- Three.js 0.160, local copy in /js/vendor/three -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "/js/vendor/three/three.module.min.js",
+        "three/addons/": "/js/vendor/three/addons/"
+      }
+    }
+  </script>
+
+  <!-- Scripts -->
+  <script src="/js/i18n.js" defer></script>
+  <script src="/js/site.js" defer></script>
+  <script src="/js/bootstrap.bundle.min.js" defer></script>
+  <script src="/applets/applets.js" defer></script>
+  <script type="module" src="app.js"></script>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <div id="navbar-placeholder" data-page="applets" data-lang="auto" data-switch="query"></div>
+
+  <main class="applet-main container-fluid">
+    <header class="applet-header">
+      <a class="applet-back" data-applets-link href="/fr/applets.html">← <span data-i18n="back"></span></a>
+      <h1 data-i18n="title"></h1>
+      <p class="applet-lead" data-i18n="lead"></p>
+    </header>
+
+    <div class="applet-layout">
+      <aside class="applet-controls">
+        <div class="control-group">
+          <label class="form-label" for="preset" data-i18n="presetLabel"></label>
+          <select class="form-select form-select-sm" id="preset"></select>
+        </div>
+
+        <div class="control-group">
+          <span class="form-label d-block" data-i18n="dimLabel"></span>
+          <div class="btn-group btn-group-sm w-100" role="group">
+            <input type="radio" class="btn-check" name="dim" id="dim2" value="2d">
+            <label class="btn btn-outline-primary" for="dim2" data-i18n="dim2"></label>
+            <input type="radio" class="btn-check" name="dim" id="dim3" value="3d" checked>
+            <label class="btn btn-outline-primary" for="dim3" data-i18n="dim3"></label>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="form-label" for="complex" data-i18n="complexLabel"></label>
+          <select class="form-select form-select-sm" id="complex"></select>
+        </div>
+
+        <div class="control-group">
+          <span class="form-label d-block" data-i18n="funcLabel"></span>
+          <div class="input-group input-group-sm mb-1">
+            <label class="input-group-text" for="f0"><i>f</i><sub>1</sub>&nbsp;=</label>
+            <input type="text" class="form-control font-monospace" id="f0" list="f-examples" autocomplete="off" spellcheck="false">
+          </div>
+          <div class="mdm-error" id="f0err"></div>
+          <div class="input-group input-group-sm mb-1">
+            <label class="input-group-text" for="f1"><i>f</i><sub>2</sub>&nbsp;=</label>
+            <input type="text" class="form-control font-monospace" id="f1" list="f-examples" autocomplete="off" spellcheck="false">
+          </div>
+          <div class="mdm-error" id="f1err"></div>
+          <div id="f2wrap">
+            <div class="input-group input-group-sm mb-1">
+              <label class="input-group-text" for="f2"><i>f</i><sub>3</sub>&nbsp;=</label>
+              <input type="text" class="form-control font-monospace" id="f2" list="f-examples" autocomplete="off" spellcheck="false">
+            </div>
+            <div class="mdm-error" id="f2err"></div>
+          </div>
+          <datalist id="f-examples">
+            <option value="x"></option>
+            <option value="y"></option>
+            <option value="z"></option>
+            <option value="abs(x)"></option>
+            <option value="abs(y)"></option>
+            <option value="x^2 + y^2"></option>
+            <option value="sqrt(x^2 + y^2)"></option>
+            <option value="0"></option>
+          </datalist>
+          <div class="form-text mt-0" data-i18n="funcHelp"></div>
+        </div>
+
+        <div class="control-group">
+          <label class="form-label" for="index" data-i18n="indexLabel"></label>
+          <div class="input-group input-group-sm">
+            <select class="form-select" id="index"></select>
+            <label class="input-group-text" for="seed-input" data-i18n="seedLabel" id="seed-label"></label>
+            <input type="text" inputmode="numeric" autocomplete="off" class="form-control applet-seed"
+                   id="seed-input" data-i18n-title="seedTitle">
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="form-label" for="view" data-i18n="viewLabel"></label>
+          <select class="form-select form-select-sm" id="view"></select>
+        </div>
+
+        <div class="control-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="showArrows" checked>
+            <label class="form-check-label" for="showArrows" data-i18n="showArrows"></label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="showEdges" checked>
+            <label class="form-check-label" for="showEdges" data-i18n="showEdges"></label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="showAxes" checked>
+            <label class="form-check-label" for="showAxes" data-i18n="showAxes"></label>
+          </div>
+        </div>
+
+        <div class="control-group d-grid gap-2">
+          <button type="button" class="btn btn-sm btn-outline-secondary" id="resetView" data-i18n="resetView"></button>
+          <button type="button" class="btn btn-sm btn-outline-secondary" id="resetAll"></button>
+          <button type="button" class="btn btn-sm btn-outline-secondary" id="download"></button>
+        </div>
+      </aside>
+
+      <section class="applet-stage">
+        <div id="viewport" class="applet-canvas mdm-viewport"></div>
+        <div class="applet-status" id="status"></div>
+        <div class="applet-status" id="source"></div>
+        <div class="applet-legend" id="legend"></div>
+
+        <div class="row mt-3 g-3">
+          <div class="col-12 col-xl-6">
+            <h2 class="h6" data-i18n="statsTitle"></h2>
+            <table class="table table-sm applet-table mb-2" id="stats"></table>
+            <ul class="small mb-0 ps-3" id="summary"></ul>
+          </div>
+          <div class="col-12 col-xl-6" id="valuesBlock" hidden>
+            <h2 class="h6" data-i18n="valuesTitle"></h2>
+            <div class="mdm-values">
+              <table class="table table-sm applet-table mb-0" id="values"></table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="applet-notes">
+      <h2 data-i18n="notesInputTitle"></h2>
+      <p data-i18n="notesInput"></p>
+      <h2 data-i18n="notesOutputTitle"></h2>
+      <p data-i18n="notesOutput"></p>
+      <p data-i18n="notesViews"></p>
+      <p data-i18n="notesComponents"></p>
+      <h2 data-i18n="notesRefTitle"></h2>
+      <p data-i18n="notesRef"></p>
+      <h2 data-i18n="notesDataTitle"></h2>
+      <p data-i18n="notesData"></p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer-placeholder"></div>
+</body>
+
+</html>

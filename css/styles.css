@@ -41,6 +41,13 @@ body {
   position: relative;
 }
 
+/* On phones the banner is shorter, so that the text starts on the first screen. */
+@media (max-width: 575.98px) {
+  .hero {
+    height: 35vh;
+  }
+}
+
 .hero::after {
   content: "";
   position: absolute;
@@ -207,5 +214,21 @@ blockquote {
     margin-right: 1rem;
     display: block;
     clear: left;
+  }
+}
+
+/* Seminar page: embedded talk */
+.horizons-video {
+  max-width: 760px;
+}
+
+/* On phones, a figure sits above its text at full width instead of beside it. */
+@media (max-width: 575.98px) {
+  .research-project-float-right,
+  .research-project-float-left {
+    float: none;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto 0.75rem;
   }
 }

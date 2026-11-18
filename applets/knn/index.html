@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr" translate="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plus proches voisins selon la distance – Guillaume Brouillette</title>
+  <meta name="description" content="Applette interactive&nbsp;: les k plus proches voisins d'un point requête parmi les points d'un jeu de données synthétique du plan ou de l'espace, pour la distance euclidienne, de Manhattan, de Tchebychev ou cosinus.">
+  <link rel="canonical" href="https://guillaumebrouillette.com/applets/knn/">
+  <link rel="icon" href="/images/MDMcircle.svg">
+  <link rel="stylesheet" href="/css/bootswatch-sandstone.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/applets/applets.css">
+
+  <!-- Three.js 0.160, local copy in /js/vendor/three -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "/js/vendor/three/three.module.min.js",
+        "three/addons/": "/js/vendor/three/addons/"
+      }
+    }
+  </script>
+  <script src="/js/i18n.js" defer></script>
+  <script src="/js/site.js" defer></script>
+  <script src="/js/bootstrap.bundle.min.js" defer></script>
+  <script src="/applets/applets.js" defer></script>
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <div id="navbar-placeholder" data-page="applets" data-lang="auto" data-switch="query"></div>
+  <main class="applet-main container-fluid">
+    <header class="applet-header">
+      <a class="applet-back" data-applets-link href="/fr/applets.html">← <span data-i18n="back"></span></a>
+      <h1 data-i18n="title"></h1>
+      <p class="applet-lead" data-i18n="lead"></p>
+    </header>
+    <div class="applet-layout">
+      <aside class="applet-controls" id="panel"></aside>
+      <section class="applet-stage">
+        <div class="cloud-figure">
+          <canvas class="applet-canvas" id="canvas" role="img"></canvas>
+          <div class="applet-canvas" id="view3d" hidden></div>
+        </div>
+        <div class="applet-legend">
+          <span><span class="swatch" style="background: rgba(0, 0, 0, 0.47)"></span><span data-i18n="legendPoints"></span></span>
+          <span><span class="swatch" style="background: rgba(0, 0, 255, 0.78)"></span><span data-i18n="legendQuery"></span></span>
+          <span><span class="swatch" style="background: rgba(255, 0, 0, 0.6)"></span><span data-i18n="legendNeighbours"></span></span>
+          <span id="legend-origin" hidden><span class="swatch" style="background: rgba(128, 0, 128, 0.78)"></span><span data-i18n="legendOrigin"></span></span>
+        </div>
+        <div class="applet-status" id="status"></div>
+        <div class="applet-status" id="hint"></div>
+      </section>
+    </div>
+    <section class="applet-notes">
+      <h2 data-i18n="notesReadTitle"></h2>
+      <p data-i18n="notesRead"></p>
+      <h2 data-i18n="notesMetricsTitle"></h2>
+      <p data-i18n="notesMetricsIntro"></p>
+      <ul>
+        <li data-i18n="notesEuclidean"></li>
+        <li data-i18n="notesManhattan"></li>
+        <li data-i18n="notesChebyshev"></li>
+        <li data-i18n="notesCosine"></li>
+      </ul>
+      <p data-i18n="notesCompare"></p>
+      <h2 data-i18n="notesCloudTitle"></h2>
+      <p data-i18n="notesCloudData"></p>
+      <p data-i18n="notesCloudEdit"></p>
+    </section>
+  </main>
+  <div id="footer-placeholder"></div>
+</body>
+</html>

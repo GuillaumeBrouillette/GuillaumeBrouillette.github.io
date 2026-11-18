@@ -11,3 +11,6 @@ Thumbs.db
 
 # Redundant build artifact (Bootstrap ships inside bootswatch-sandstone.min.css)
 css/bootstrap.min.css
+
+# Obsidian workspace
+.obsidian/

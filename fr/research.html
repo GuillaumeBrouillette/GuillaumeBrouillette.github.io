@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Recherche – Guillaume Brouillette</title>
-  <meta name="description" content="Recherche de Guillaume Brouillette en analyse topologique de données : grands modèles de langage et géométrie des embeddings, théorie de Morse discrète multiparamètre et fractales multicomplexes.">
+  <meta name="description" content="Recherche de Guillaume Brouillette en topologie combinatoire et computationnelle&nbsp;: théorie de Morse discrète multiparamètre, homologie persistante multiparamètre, reconstruction d'objets fragmentés, recherche d'information pour les grands modèles de langage et fractales multicomplexes.">
 
   <!-- Canonical & language alternates -->
   <link rel="canonical" href="https://guillaumebrouillette.com/fr/research.html">
@@ -17,7 +17,7 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Recherche – Guillaume Brouillette">
-  <meta property="og:description" content="Méthodes topologiques et géométriques pour les données et les systèmes d'apprentissage : embeddings de LLM, théorie de Morse discrète multiparamètre et fractales multicomplexes.">
+  <meta property="og:description" content="Théorie de Morse discrète multiparamètre, homologie persistante multiparamètre et applications en apprentissage automatique.">
   <meta property="og:url" content="https://guillaumebrouillette.com/fr/research.html">
   <meta property="og:image" content="https://guillaumebrouillette.com/images/MDM_torus.webp">
   <meta property="og:locale" content="fr_CA">
@@ -52,135 +52,212 @@
     <section>
       <h2>Intérêts de recherche</h2>
       <p>
-        Je m'intéresse principalement au développement de méthodes
-        topologiques et géométriques permettant d'extraire la structure d'un
-        jeu de données, ou encore de comprendre le comportement des systèmes
-        d'apprentissage. Ainsi, mes recherches se situent à l'intersection de
-        la <b>topologie</b>, de l'<b>analyse de données</b> et de l'<b
-          >apprentissage profond</b
-        >.
+        Mes travaux portent sur la topologie
+        computationnelle. Ils ont pour fil conducteur l'utilisation de
+        structures combinatoires pour décrire et calculer la forme d'un
+        espace, que celui-ci soit un complexe simplicial, une image ou un
+        jeu de données. Mon programme de recherche principal porte sur la
+        <b>théorie de Morse discrète multiparamètre</b> et mes
+        travaux postdoctoraux appliquent des méthodes géométriques et
+        topologiques en <b>apprentissage automatique</b>.
       </p>
     </section>
 
-    <!-- Projets de recherche -->
+    <!-- Programme principal -->
     <section class="mt-5">
-      <h2>Projets</h2>
+      <h2>Théorie de Morse discrète multiparamètre</h2>
 
-      <article class="research-project-row mt-1">
-        <div class="research-project-text">
-          <h3 class="h5">
-            Les grands modèles de langage et la géométrie des embeddings
-          </h3>
-          <div class="research-project-float-right">
-            <img
-              src="/images/llm-rag-diagram.svg"
-              class="img-fluid rounded research-project-image"
-              alt="Diagramme abstrait d'un pipeline LLM"
-            />
-          </div>
-          <p>
-            Les grands modèles de langage (LLM) encodent des mots, des phrases
-            et des concepts sous forme de vecteurs de grande dimension appelés
-            <i>embeddings</i>. La forme des espaces d'embeddings est loin
-            d'être arbitraire : les relations sémantiques et syntaxiques
-            significatives tendent à s'auto-organiser en structures
-            géométriques.
-          </p>
-          <p class="mb-0">
-            J'étudie ces structures à l'aide d'outils de topologie
-            computationnelle, notamment l'homologie persistante. L'objectif
-            est de mieux comprendre ce qu'un LLM apprend, avec quelle
-            fiabilité il représente les données, et comment sa géométrie
-            interne évolue au cours d'un entraînement. En obtenant une image
-            plus claire de ces structures géométriques, nous pouvons améliorer
-            l'explicabilité et la robustesse des LLM.
-          </p>
-        </div>
-        <div class="research-project-media">
-          <img
-            src="/images/llm-rag-diagram.svg"
-            class="img-fluid rounded research-project-image"
-            alt="Diagramme abstrait d'un pipeline LLM"
-          />
-        </div>
-      </article>
-
-      <article
-        class="research-project-row research-project-row--reverse mt-2"
-      >
+      <article class="research-project-row research-project-row--reverse mt-1">
         <div class="research-project-media">
           <img
             src="/images/MDMcircle.svg"
             class="img-fluid rounded research-project-image"
-            alt="Champ gradient d'une fonction de Morse discrète multidimensionnelle"
+            alt="Champ gradient d'une fonction de Morse discrète multiparamètre sur un cercle triangulé"
           />
         </div>
         <div class="research-project-text">
-          <h3 class="h5">Théorie de Morse discrète multiparamètre</h3>
+          <h3 class="h5">Des fonctions réelles aux fonctions vectorielles</h3>
           <div class="research-project-float-left">
             <img
               src="/images/MDMcircle.svg"
               class="img-fluid rounded research-project-image"
-              alt="Champ gradient d'une fonction de Morse discrète multidimensionnelle"
+              alt="Champ gradient d'une fonction de Morse discrète multiparamètre sur un cercle triangulé"
             />
           </div>
           <p>
-            La théorie de Morse classique étudie comment la topologie d'un
-            espace varie lorsqu'on balaie les ensembles de sous-niveaux d'une
-            fonction à valeurs réelles. Ainsi, elle permet de détecter quand
-            les composantes connexes, les trous ou les vides se forment ou
-            disparaissent. La théorie de Morse discrète transpose ces idées
-            dans un cadre combinatoire, permettant d'analyser la forme de jeux
-            de données complexes de manière efficace d'un point de vue
-            computationnel.
+            La théorie de Morse étudie comment la topologie d'un espace varie
+            lorsqu'on parcourt les ensembles de sous-niveaux d'une fonction à
+            valeurs réelles. Elle relie ainsi chaque point critique de la
+            fonction à une caractéristique homologique de l'espace. Plus précisément,
+            chaque singularité correspond à l'apparition ou à la disparition d'une composante
+            connexe, d'un trou ou d'une cavité. La théorie de Morse discrète,
+            formulée par Forman, transpose ces idées dans un cadre
+            combinatoire qui se prête bien au calcul.
           </p>
           <p class="mb-0">
-            Dans ma thèse de doctorat, je développe les fondements théoriques
-            et algorithmiques nécessaires pour étendre ce cadre à un contexte
-            multidimensionnel, où un espace est filtré simultanément par
-            plusieurs fonctions plutôt qu'une seule. Cette théorie généralisée
-            est étroitement liée à l'<b
-              >homologie persistante multiparamètre</b
-            >, qui fournit un moyen de caractériser un jeu de données selon
-            plusieurs descripteurs.
+            Durant mon doctorat, sous la direction de Tomasz Kaczynski and Madjid Allili, 
+            j'ai étendu la théorie de Forman aux
+            fonctions à valeurs dans ℝ<sup><i>k</i></sup>, qui permettent de
+            filtrer un espace selon plusieurs paramètres simultanément. Dans
+            cette théorie, appelée théorie de Morse discrète multiparamètre
+            (théorie MDM), les cellules critiques d'une fonction ne sont pas
+            isolées, contrairement à celles dans le cadre original. Elles
+            se regroupent plutôt en composantes critiques,
+            analogues aux ensembles de Pareto des fonctions lisses à
+            valeurs vectorielles. Les résultats centraux de Forman, notamment
+            les inégalités de Morse, s'étendent à ce cadre
+            (<a href="https://doi.org/10.1007/s41468-024-00176-7" target="_blank" rel="noopener noreferrer">Brouillette, Allili et Kaczynski, 2024</a>).
           </p>
         </div>
       </article>
 
-      <article class="research-project-row mt-2">
+      <h3 class="h5 mt-4">Calcul de l'homologie persistante multiparamètre</h3>
+      <p>
+        La théorie MDM est étroitement liée à
+        l'<b>homologie persistante multiparamètre</b>, dont le calcul est reconnu
+        pour être lourd du point de vue computationnel. L'algorithme <span class="font-monospace">GenerateMDM</span>
+        prend en entrée une fonction de multifiltration quelconque définie
+        sur un complexe simplicial et produit une fonction MDM qui l'approxime
+        et dont le champ gradient est compatible avec la multifiltration
+        induite (<a href="https://doi.org/10.12775/TMNA.2025.020" target="_blank" rel="noopener noreferrer">Brouillette, 2025</a>). Le complexe peut alors
+        être réduit à ses cellules critiques sans que son homologie
+        persistante multiparamètre soit modifiée. Le même article définit
+        l'ensemble de Pareto discret d'une fonction de multifiltration et
+        compare ses composantes connexes aux composantes critiques de la
+        fonction MDM obtenue. Une
+        <a href="/applets/mdm/?lang=fr">applette interactive</a> exécute
+        l'algorithme sur les exemples de l'article.
+      </p>
+    </section>
+
+    <!-- Applications -->
+    <section class="mt-5">
+      <h2>Applications en apprentissage automatique</h2>
+
+      <article class="research-project-row mt-1">
+        <div class="research-project-text">
+          <h3 class="h5">Reconstruction d'objets fragmentés</h3>
+          <div class="research-project-float-right">
+            <a href="/images/fragment-adjacency.webp" target="_blank" rel="noopener noreferrer" class="d-block w-100" title="Agrandir la figure"><img
+              src="/images/fragment-adjacency.webp"
+              class="img-fluid rounded research-project-image"
+              alt="Deux fragments adjacents, les profils d'angle de la tangente le long de leurs contours, les matrices d'adjacence et la frontière commune prédite"
+            /></a>
+          </div>
+          <p>
+            Reconstituer un objet brisé à partir de ses fragments est un
+            problème récurrent en archéologie et en criminalistique. Une étape
+            clé consiste à déterminer si deux fragments sont adjacents et, le
+            cas échéant, à localiser leur frontière commune.
+          </p>
+          <p class="mb-0">
+            Dans le cadre de mon postdoctorat à l'UQTR, avec Alain Goupil,
+            Pierre-Olivier Parisé et Fadel Touré, je développe des modèles
+            d'apprentissage profond qui prédisent l'adjacence de fragments 2D
+            à partir de leurs contours. Notre
+            <a href="https://arxiv.org/abs/2610.09459" target="_blank" rel="noopener noreferrer">prépublication</a> propose un descripteur fondé sur
+            l'angle de la tangente le long du contour, qui est invariant par
+            rotation et indépendant du point de départ du contour. Elle
+            propose aussi un réseau de type U-Net qui segmente la frontière
+            commune dans la matrice d'adjacence d'une paire de fragments.
+          </p>
+        </div>
+        <div class="research-project-media">
+          <a href="/images/fragment-adjacency.webp" target="_blank" rel="noopener noreferrer" class="d-block w-100" title="Agrandir la figure"><img
+            src="/images/fragment-adjacency.webp"
+            class="img-fluid rounded research-project-image"
+            alt="Deux fragments adjacents, les profils d'angle de la tangente le long de leurs contours, les matrices d'adjacence et la frontière commune prédite"
+          /></a>
+        </div>
+      </article>
+
+      <article class="research-project-row research-project-row--reverse mt-2">
+        <div class="research-project-media">
+          <img
+            src="/images/llm-rag-diagram.svg"
+            class="img-fluid rounded research-project-image"
+            alt="Schéma d'un pipeline de génération augmentée par récupération"
+          />
+        </div>
+        <div class="research-project-text">
+          <h3 class="h5">Pertinence et diversité dans les LLMs</h3>
+          <div class="research-project-float-left">
+            <img
+              src="/images/llm-rag-diagram.svg"
+              class="img-fluid rounded research-project-image"
+              alt="Schéma d'un pipeline de génération augmentée par récupération"
+            />
+          </div>
+          <p>
+            La génération augmentée par récupération (RAG) fournit à un grand
+            modèle de langage des passages tirés d'un corpus, choisis selon la
+            proximité de leurs plongements avec celui de la requête.
+            Cependant, lorsque le corpus est redondant, les plus proches
+            voisins de la requête tendent à répéter la même information.
+          </p>
+          <p class="mb-0">
+            Cette idée a été étudiée lors d'un projet Mitacs Accélération
+            mené à l'UQTR avec Faustin Kagabo, Usef Faghihi et Nadia Ghazzali. Notre
+            <a href="https://arxiv.org/abs/2610.09412" target="_blank" rel="noopener noreferrer">prépublication</a>
+            montre que la diversification
+            des passages récupérés peut être utile ou nuisible selon leur redondance.
+            Elle propose une règle adaptative qui ne
+            diversifie que lorsque c'est nécessaire ainsi que le RNG-Score, une
+            méthode géométrique de reclassement
+            (<a href="https://github.com/GuillaumeBrouillette/finding-the-right-balance" target="_blank" rel="noopener noreferrer">code</a>,
+            <a href="/applets/selection/?lang=fr">applette</a>).
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Travaux antérieurs -->
+    <section class="mt-5">
+      <h2>Travaux antérieurs</h2>
+
+      <article class="research-project-row mt-1">
         <div class="research-project-text">
           <h3 class="h5">Fractales multicomplexes</h3>
           <div class="research-project-float-right">
             <img
               src="/images/Arrowheadbrot.webp"
               class="img-fluid rounded research-project-image"
-              alt="Coupe 3D d'une fractale multicomplexe"
+              alt="Coupe tridimensionnelle d'un Multibrot multicomplexe"
             />
           </div>
           <p>
-            Le plan complexe peut être généralisé en dimensions supérieures à
-            l'aide des nombres multicomplexes, ouvrant ainsi la voie aux
-            fractales en dimensions 4, 8, 16 et au-delà. On peut donc se poser
-            la question : à quoi ressemblent ces fractales et comment
-            peuvent-elles être décrites ?
+            Les nombres multicomplexes généralisent les nombres complexes en
+            dimensions 4, 8, 16 et au-delà. Les ensembles de Mandelbrot et de
+            Julia classiques s'étendent naturellement à ces espaces dans lesquels ils peuvent
+            être visualisés à l'aide de leurs coupes tridimensionnelles.
           </p>
           <p class="mb-0">
-            Dans ma thèse de maîtrise, j'explore le monde fascinant des
-            nombres multicomplexes et de leurs fractales associées. En
-            particulier, je classifie les coupes tridimensionnelles
-            principales des ensembles de Mandelbrot généralisés à l'aide
-            d'outils issus des systèmes dynamiques, de l'algèbre et de la
-            géométrie.
+            Dans mon mémoire de maîtrise, dirigé par Dominic Rochon, j'ai
+            classifié les coupes tridimensionnelles principales des Multibrots
+            multicomplexes à l'aide d'outils issus des systèmes dynamiques, de
+            l'algèbre et de la géométrie
+            (<a href="https://doi.org/10.1007/s00006-019-0956-1" target="_blank" rel="noopener noreferrer">Brouillette et Rochon, 2019</a>). Avec
+            Pierre-Olivier Parisé et Dominic Rochon, j'ai aussi obtenu des
+            estimations de distance pour les ensembles de Julia remplis et les
+            Multibrots tricomplexes
+            (<a href="https://doi.org/10.1142/S0218127419500858" target="_blank" rel="noopener noreferrer">Brouillette, Parisé et Rochon, 2019</a>).
           </p>
         </div>
         <div class="research-project-media">
           <img
             src="/images/Arrowheadbrot.webp"
             class="img-fluid rounded research-project-image"
-            alt="Coupe 3D d'une fractale multicomplexe"
+            alt="Coupe tridimensionnelle d'un Multibrot multicomplexe"
           />
         </div>
       </article>
+
+      <h3 class="h5 mt-4">Polyominos</h3>
+      <p class="mb-0">
+        Lors de stages de recherche au premier cycle supervisés par Alain
+        Goupil, j'ai étudié et dénombré diverses familles de polyominos, ce
+        qui m'a initié à la combinatoire ainsi qu'à la géométrie discrète.
+      </p>
     </section>
   </main>
 

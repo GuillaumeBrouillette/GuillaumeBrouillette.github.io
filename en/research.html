@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Research – Guillaume Brouillette</title>
-  <meta name="description" content="Research of Guillaume Brouillette in topological data analysis: large language models and the geometry of embeddings, multiparameter discrete Morse theory, and multicomplex fractals.">
+  <meta name="description" content="Research of Guillaume Brouillette in combinatorial and computational topology: multiparameter discrete Morse theory, multiparameter persistent homology, reconstruction of fragmented objects, information retrieval for large language models and multicomplex fractals.">
 
   <!-- Canonical & language alternates -->
   <link rel="canonical" href="https://guillaumebrouillette.com/en/research.html">
@@ -17,7 +17,7 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Research – Guillaume Brouillette">
-  <meta property="og:description" content="Topological and geometric methods for data and learning systems: LLM embeddings, multiparameter discrete Morse theory, and multicomplex fractals.">
+  <meta property="og:description" content="Multiparameter discrete Morse theory, multiparameter persistent homology and applications to machine learning.">
   <meta property="og:url" content="https://guillaumebrouillette.com/en/research.html">
   <meta property="og:image" content="https://guillaumebrouillette.com/images/MDM_torus.webp">
   <meta property="og:locale" content="en_CA">
@@ -52,125 +52,204 @@
     <section>
       <h2>Research interests</h2>
       <p>
-        I am mainly interested in developing topological and geometrical
-        methods that can extract structure from data and help understand the
-        behavior of learning systems. Therefore, my research sits at the
-        intersection of <b>topology</b>, <b>data analysis</b> and
-        <b>deep learning</b>.
+        My work is in computational topology. Its common
+        thread is the use of combinatorial structures to describe and compute
+        the shape of a space, whether it is a simplicial complex, an image
+        or a dataset. My main research programme concerns
+        <b>multiparameter discrete Morse theory</b> and my
+        postdoctoral work applies geometric and topological methods to
+        <b>machine learning</b>.
       </p>
     </section>
 
-    <!-- Research Projects -->
+    <!-- Main programme -->
     <section class="mt-5">
-      <h2>Projects</h2>
+      <h2>Multiparameter discrete Morse theory</h2>
 
-      <article class="research-project-row mt-1">
-        <div class="research-project-text">
-          <h3 class="h5">
-            Large language models and the geometry of embeddings
-          </h3>
-          <div class="research-project-float-right">
-            <img
-              src="/images/llm-rag-diagram.svg"
-              class="img-fluid rounded research-project-image"
-              alt="Abstract LLM pipeline diagram"
-            />
-          </div>
-          <p>
-            Large language models (LLMs) map words, sentences, and concepts
-            into high-dimensional vector spaces called embedding spaces. These
-            spaces are far from arbitrary: meaningful semantic and syntactic
-            relationships tend to self-organize into geometric structures.
-          </p>
-          <p class="mb-0">
-            I study these structures using tools from computational topology,
-            notably persistent homology. The goal is to better understand what
-            a LLM learns, how reliably it represents data, and how its
-            internal geometry evolves through training. By obtaining a clearer
-            picture of these geometric structures, we can improve the
-            explainability and robustness of LLMs.
-          </p>
-        </div>
-        <div class="research-project-media">
-          <img
-            src="/images/llm-rag-diagram.svg"
-            class="img-fluid rounded research-project-image"
-            alt="Abstract LLM pipeline diagram"
-          />
-        </div>
-      </article>
-
-      <article
-        class="research-project-row research-project-row--reverse mt-2"
-      >
+      <article class="research-project-row research-project-row--reverse mt-1">
         <div class="research-project-media">
           <img
             src="/images/MDMcircle.svg"
             class="img-fluid rounded research-project-image"
-            alt="Gradient field of a multidimensional discrete Morse function"
+            alt="Gradient field of a multiparameter discrete Morse function on a triangulated circle"
           />
         </div>
         <div class="research-project-text">
-          <h3 class="h5">Multiparameter discrete Morse theory</h3>
+          <h3 class="h5">From real-valued to vector-valued functions</h3>
           <div class="research-project-float-left">
             <img
               src="/images/MDMcircle.svg"
               class="img-fluid rounded research-project-image"
-              alt="Gradient field of a multidimensional discrete Morse function"
+              alt="Gradient field of a multiparameter discrete Morse function on a triangulated circle"
             />
           </div>
           <p>
-            Classical Morse theory studies how the topology of a space changes
-            as one sweeps through the sublevel sets of a real-valued function,
-            tracking when connected components, holes or voids either form or
-            disappear. Discrete Morse theory carries this idea to a
-            combinatorial setting, allowing us to analyze the shape of complex
-            datasets in a computationally efficient way.
+            Morse theory studies how the topology of a space changes as one
+            sweeps through the sublevel sets of a real-valued function. It
+            thus links each critical point of the function to a homological
+            feature of the space. More precisely, each singularity corresponds
+            to the appearance or disappearance
+            of a connected component, a hole or a void. Discrete Morse theory,
+            introduced by Forman, carries these ideas to a combinatorial
+            setting that is well suited to computation.
           </p>
           <p class="mb-0">
-            In my PhD thesis, I develop the theoretical and algorithmic
-            foundations needed to extend this framework to a multidimensional
-            setting, where a space is filtered simultaneously by several
-            functions rather than one. This generalized theory is strongly
-            linked to <b>multiparameter persistent homology</b>, which
-            provides a way to characterize a dataset with respect to multiple
-            descriptors.
+            During my PhD, under the supervision of Tomasz Kaczynski and Madjid Allili,
+            I extended the theory of Forman to functions with
+            values in ℝ<sup><i>k</i></sup>, which may be used to filter a space
+            with several parameters simultaneously. In this theory, called
+            multiparameter discrete Morse (MDM) theory, the critical cells of
+            a function are not isolated, unlike in the original framework.
+            Instead, they group into
+            critical components, analogous to the Pareto sets of
+            smooth vector-valued functions. The central results of Forman,
+            notably the Morse inequalities, extend to this setting
+            (<a href="https://doi.org/10.1007/s41468-024-00176-7" target="_blank" rel="noopener noreferrer">Brouillette, Allili and Kaczynski, 2024</a>).
           </p>
         </div>
       </article>
 
-      <article class="research-project-row mt-2">
+      <h3 class="h5 mt-4">Computing multiparameter persistent homology</h3>
+      <p>
+        MDM theory is closely linked to
+        <b>multiparameter persistent homology</b>, whose efficient computation
+        presents a challenge. The algorithm
+        <span class="font-monospace">GenerateMDM</span> takes as input any
+        multifiltering function defined on a simplicial complex and outputs
+        a MDM function which approximates it and whose gradient field is
+        compatible with the induced multifiltration
+        (<a href="https://doi.org/10.12775/TMNA.2025.020" target="_blank" rel="noopener noreferrer">Brouillette, 2025</a>). The complex can then be reduced
+        to its critical cells without affecting its multiparameter persistent
+        homology. The same paper defines the discrete Pareto set of a
+        multifiltering function and compares its connected components with
+        the critical components of the resulting MDM function. An
+        <a href="/applets/mdm/?lang=en">interactive applet</a> runs the
+        algorithm on the examples of the paper.
+      </p>
+    </section>
+
+    <!-- Applications -->
+    <section class="mt-5">
+      <h2>Applications to machine learning</h2>
+
+      <article class="research-project-row mt-1">
+        <div class="research-project-text">
+          <h3 class="h5">Reconstruction of fragmented objects</h3>
+          <div class="research-project-float-right">
+            <a href="/images/fragment-adjacency.webp" target="_blank" rel="noopener noreferrer" class="d-block w-100" title="Enlarge the figure"><img
+              src="/images/fragment-adjacency.webp"
+              class="img-fluid rounded research-project-image"
+              alt="Two adjacent fragments, the tangent-angle profiles along their contours, the adjacency matrices and the predicted shared boundary"
+            /></a>
+          </div>
+          <p>
+            Reassembling a broken object from its fragments is a recurring
+            problem in archaeology and forensics. A key step is to determine
+            whether two fragments are adjacent and, if so, to locate their
+            shared boundary.
+          </p>
+          <p class="mb-0">
+            As part of my postdoctoral work at UQTR with Alain Goupil,
+            Pierre-Olivier Parisé and Fadel Touré, I develop deep learning
+            models that predict the adjacency of 2D fragments from their
+            contours. Our <a href="https://arxiv.org/abs/2610.09459" target="_blank" rel="noopener noreferrer">preprint</a> proposes a descriptor
+            based on the tangent angle along the contour, which is invariant
+            under rotation and independent of the starting point of the
+            contour. It also proposes a band U-Net that segments the shared
+            boundary in the adjacency matrix of a pair of fragments.
+          </p>
+        </div>
+        <div class="research-project-media">
+          <a href="/images/fragment-adjacency.webp" target="_blank" rel="noopener noreferrer" class="d-block w-100" title="Enlarge the figure"><img
+            src="/images/fragment-adjacency.webp"
+            class="img-fluid rounded research-project-image"
+            alt="Two adjacent fragments, the tangent-angle profiles along their contours, the adjacency matrices and the predicted shared boundary"
+          /></a>
+        </div>
+      </article>
+
+      <article class="research-project-row research-project-row--reverse mt-2">
+        <div class="research-project-media">
+          <img
+            src="/images/llm-rag-diagram.svg"
+            class="img-fluid rounded research-project-image"
+            alt="Diagram of a retrieval-augmented generation pipeline"
+          />
+        </div>
+        <div class="research-project-text">
+          <h3 class="h5">Relevance and diversity in LLMs</h3>
+          <div class="research-project-float-left">
+            <img
+              src="/images/llm-rag-diagram.svg"
+              class="img-fluid rounded research-project-image"
+              alt="Diagram of a retrieval-augmented generation pipeline"
+            />
+          </div>
+          <p>
+            Retrieval-augmented generation (RAG) provides a large language
+            model with passages taken from a corpus, selected according to
+            the proximity of their embeddings to that of the query. However,
+            when the corpus is redundant, the nearest neighbours of the query
+            tend to repeat the same information.
+          </p>
+          <p class="mb-0">
+            This idea was studied during a Mitacs Accelerate project at
+            UQTR with Faustin Kagabo, Usef Faghihi and Nadia Ghazzali. Our
+            <a href="https://arxiv.org/abs/2610.09412" target="_blank" rel="noopener noreferrer">preprint</a> shows that diversifying the retrieved
+            passages helps or hurts depending on their redundancy. It proposes an adaptive rule that
+            diversifies only when needed as well as the RNG-Score, a geometric
+            reranking method (<a href="https://github.com/GuillaumeBrouillette/finding-the-right-balance" target="_blank" rel="noopener noreferrer">code</a>,
+            <a href="/applets/selection/?lang=en">applet</a>).
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Earlier work -->
+    <section class="mt-5">
+      <h2>Earlier work</h2>
+
+      <article class="research-project-row mt-1">
         <div class="research-project-text">
           <h3 class="h5">Multicomplex fractals</h3>
           <div class="research-project-float-right">
             <img
               src="/images/Arrowheadbrot.webp"
               class="img-fluid rounded research-project-image"
-              alt="3D slice of a multicomplex fractal"
+              alt="Three-dimensional slice of a multicomplex Multibrot set"
             />
           </div>
           <p>
-            The complex plane can be extended to higher dimensions using
-            multicomplex numbers, opening the door to fractals in dimensions
-            4, 8, 16, and beyond. This raises the question: what do these
-            higher-dimensional fractals look like and how can they be
-            described?
+            Multicomplex numbers generalize complex numbers to dimensions 4,
+            8, 16 and beyond. The classic Mandelbrot and Julia sets extend naturally to
+            the induced spaces in which they can be visualized through their
+            three-dimensional slices.
           </p>
           <p class="mb-0">
-            In my master's thesis, I explore the fascinating world of
-            multicomplex numbers and their associated fractals. Notably, I
-            classify the principal 3D slices of the generalized Mandelbrot
-            sets using tools from dynamical systems, algebra and geometry.
+            In my master's thesis, supervised by Dominic Rochon, I classified
+            the principal 3D slices of the multicomplex Multibrot sets using
+            tools from dynamical systems, algebra and geometry
+            (<a href="https://doi.org/10.1007/s00006-019-0956-1" target="_blank" rel="noopener noreferrer">Brouillette and Rochon, 2019</a>). With
+            Pierre-Olivier Parisé and Dominic Rochon, I also obtained distance
+            estimates for tricomplex filled-in Julia sets and Multibrot sets
+            (<a href="https://doi.org/10.1142/S0218127419500858" target="_blank" rel="noopener noreferrer">Brouillette, Parisé and Rochon, 2019</a>).
           </p>
         </div>
         <div class="research-project-media">
           <img
             src="/images/Arrowheadbrot.webp"
             class="img-fluid rounded research-project-image"
-            alt="3D slice of a multicomplex fractal"
+            alt="Three-dimensional slice of a multicomplex Multibrot set"
           />
         </div>
       </article>
+
+      <h3 class="h5 mt-4">Polyominoes</h3>
+      <p class="mb-0">
+        During undergraduate research internships supervised by Alain Goupil,
+        I studied and enumerated various families of polyominoes, which
+        introduced me to combinatorics and discrete geometry.
+      </p>
     </section>
   </main>
 

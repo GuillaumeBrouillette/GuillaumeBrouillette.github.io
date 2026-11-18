@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr" translate="no">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Applettes – Guillaume Brouillette</title>
+  <meta name="description" content="Applettes interactives de Guillaume Brouillette&nbsp;: théorie de Morse discrète multiparamètre, diagramme de persistance, plus proches voisins et sélection de voisins par RNG-Score.">
+
+  <!-- Canonical & language alternates -->
+  <link rel="canonical" href="https://guillaumebrouillette.com/fr/applets.html">
+  <link rel="alternate" hreflang="en" href="https://guillaumebrouillette.com/en/applets.html">
+  <link rel="alternate" hreflang="fr" href="https://guillaumebrouillette.com/fr/applets.html">
+  <link rel="alternate" hreflang="x-default" href="https://guillaumebrouillette.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Applettes – Guillaume Brouillette">
+  <meta property="og:description" content="Applettes interactives en topologie computationnelle et en géométrie.">
+  <meta property="og:url" content="https://guillaumebrouillette.com/fr/applets.html">
+  <meta property="og:image" content="https://guillaumebrouillette.com/images/MDM_torus.webp">
+  <meta property="og:locale" content="fr_CA">
+  <meta property="og:locale:alternate" content="en_CA">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/images/MDMcircle.svg">
+
+  <!-- Stylesheets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/css/bootswatch-sandstone.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/applets/applets.css">
+
+  <!-- Scripts -->
+  <script src="/js/i18n.js" defer></script>
+  <script src="/js/site.js" defer></script>
+  <script src="/js/bootstrap.bundle.min.js" defer></script>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <div id="navbar-placeholder" data-page="applets" data-lang="fr"></div>
+
+  <!-- Hero Section -->
+  <div id="hero-placeholder" data-page="applets" data-lang="fr"></div>
+
+  <!-- Main Content -->
+  <main class="container my-5">
+    <section>
+      <h2>Applettes interactives</h2>
+      <p>
+        Ces applettes illustrent des notions de topologie computationnelle et
+        de géométrie liées à mes travaux de recherche. Elles s'exécutent
+        directement dans le navigateur, sans installation.
+      </p>
+    </section>
+
+    <section class="mt-4">
+      <div class="row g-4">
+        <div class="col-12 col-md-6">
+          <div class="card h-100 applet-card">
+            <a href="/applets/mdm/?lang=fr"><img src="/images/applets/mdm.webp" class="card-img-top" alt="Champ gradient et composantes critiques d'une fonction de Morse discrète multiparamètre sur un tore triangulé" /></a>
+            <div class="card-body d-flex flex-column">
+              <h3 class="card-title h5">Théorie de Morse discrète multiparamètre</h3>
+              <p class="card-text">L'algorithme <span class="font-monospace">GenerateMDM</span> appliqué à des complexes en 2D et des surfaces triangulées en 3D. L'applette affiche le champ gradient, les simplexes critiques, les composantes critiques et l'ensemble de Pareto. Elle reproduit les exemples de l'article paru dans <i>Topological Methods in Nonlinear Analysis</i>.</p>
+              <a href="/applets/mdm/?lang=fr" class="btn btn-primary mt-auto align-self-start">Ouvrir</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card h-100 applet-card">
+            <a href="/applets/selection/?lang=fr"><img src="/images/applets/selection.webp" class="card-img-top" alt="Diagramme de Voronoï d'un nuage de points, point requête et deux sélections de voisins" /></a>
+            <div class="card-body d-flex flex-column">
+              <h3 class="card-title h5">Sélection de voisins&nbsp;: <i>k</i>-NN, MMR et RNG-Score</h3>
+              <p class="card-text">Comparaison de méthodes de sélection de points autour d'un point de requête, en deux ou en trois dimensions, avec le diagramme de Voronoï et des graphes de proximité. L'applette accompagne la prépublication sur la pertinence et la diversité en recherche d'information.</p>
+              <a href="/applets/selection/?lang=fr" class="btn btn-primary mt-auto align-self-start">Ouvrir</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card h-100 applet-card">
+            <a href="/applets/persistence/?lang=fr"><img src="/images/applets/persistence-fr.webp" class="card-img-top" alt="Complexe de Vietoris-Rips d'un nuage de points et son diagramme de persistance" /></a>
+            <div class="card-body d-flex flex-column">
+              <h3 class="card-title h5">Diagramme de persistance d'un nuage de points</h3>
+              <p class="card-text">Le complexe de Vietoris-Rips d'un nuage de points du plan ou de l'espace à une échelle réglable et le diagramme de persistance correspondant.</p>
+              <a href="/applets/persistence/?lang=fr" class="btn btn-primary mt-auto align-self-start">Ouvrir</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card h-100 applet-card">
+            <a href="/applets/knn/?lang=fr"><img src="/images/applets/knn-fr.webp" class="card-img-top" alt="Nuage de points en deux lunes, point requête et ses plus proches voisins selon la distance de Manhattan" /></a>
+            <div class="card-body d-flex flex-column">
+              <h3 class="card-title h5">Plus proches voisins selon la distance</h3>
+              <p class="card-text">Les <i>k</i> plus proches voisins d'un point de requête parmi les points d'un jeu de données. Le nuage de points peut être en 2D ou 3D et les distances euclidienne, de Manhattan, de Tchebychev et cosinus sont implémentées.</p>
+              <a href="/applets/knn/?lang=fr" class="btn btn-primary mt-auto align-self-start">Ouvrir</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer-placeholder"></div>
+</body>
+</html>

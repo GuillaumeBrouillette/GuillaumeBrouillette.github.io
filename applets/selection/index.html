@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr" translate="no">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Sélection de voisins – Guillaume Brouillette</title>
+  <meta name="description" content="Applette interactive comparant les k plus proches voisins, la pertinence marginale maximale (MMR) et RNG-Score pour la sélection de points autour d'une requête, en deux ou en trois dimensions. Interactive applet comparing k-NN, MMR and RNG-Score.">
+  <link rel="canonical" href="https://guillaumebrouillette.com/applets/selection/">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/images/MDMcircle.svg">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/bootswatch-sandstone.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/applets/applets.css">
+  <style>
+    #diagram2d {
+      display: block;
+      touch-action: manipulation;
+      cursor: crosshair;
+    }
+    #diagram3d {
+      display: block;
+    }
+    /* Legend inside the 3D figure, shown on request. */
+    #legend3d {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      display: none;
+      min-width: 130px;
+      padding: 6px 10px;
+      font-size: 11px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+      cursor: move;
+      user-select: none;
+    }
+    .legend-close {
+      cursor: pointer;
+    }
+    .sel-legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35em;
+    }
+    /* Rows of the section on the appearance of the figure. */
+    .sel-style {
+      margin-top: 0.4rem;
+    }
+    .sel-row {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-bottom: 0.3rem;
+    }
+    .sel-label {
+      flex: 0 0 4.6rem;
+      font-size: 0.8rem;
+      line-height: 1.15;
+      margin: 0;
+    }
+    .sel-label.sel-wide {
+      flex: 1 1 auto;
+    }
+    .sel-row .form-control-color {
+      flex: 0 0 2rem;
+      width: 2rem;
+      padding: 0.15rem;
+    }
+    .sel-row .form-select {
+      min-width: 0;
+    }
+    .sel-row .sel-number {
+      flex: 0 0 3.6rem;
+      width: 3.6rem;
+    }
+    .applet-controls details > summary {
+      cursor: pointer;
+    }
+  </style>
+
+  <!-- Three.js 0.160, local copy in /js/vendor/three -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "/js/vendor/three/three.module.min.js",
+        "three/addons/": "/js/vendor/three/addons/"
+      }
+    }
+  </script>
+
+  <!-- Scripts -->
+  <script src="/js/i18n.js" defer></script>
+  <script src="/js/site.js" defer></script>
+  <script src="/js/bootstrap.bundle.min.js" defer></script>
+  <script src="/applets/applets.js" defer></script>
+  <script src="/js/vendor/d3/d3.min.js" defer></script>
+  <script type="module" src="app.js"></script>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <div id="navbar-placeholder" data-page="applets" data-lang="auto" data-switch="query"></div>
+
+  <main class="applet-main container-fluid">
+    <header class="applet-header">
+      <a class="applet-back" data-applets-link href="/fr/applets.html">← <span data-i18n="back"></span></a>
+      <h1 data-i18n="title"></h1>
+      <p class="applet-lead" data-i18n="lead"></p>
+    </header>
+
+    <div class="applet-layout">
+      <aside class="applet-controls" id="panel"></aside>
+      <section class="applet-stage">
+        <div class="cloud-figure">
+          <div class="applet-canvas" id="stage2d"><svg id="diagram2d" xmlns="http://www.w3.org/2000/svg"></svg></div>
+          <div class="applet-canvas" id="stage3d" hidden><canvas id="diagram3d"></canvas><div id="legend3d"></div></div>
+        </div>
+        <div class="applet-legend" id="legend"></div>
+        <div class="applet-status" id="stats"></div>
+        <div class="applet-status" id="hint"></div>
+      </section>
+    </div>
+
+    <section class="applet-notes">
+      <h2 data-i18n="notesTitle"></h2>
+      <p data-i18n="notesMethods"></p>
+      <p data-i18n="notesOverlays"></p>
+      <h2 data-i18n="notesCloudTitle"></h2>
+      <p data-i18n="notesCloudData"></p>
+      <p data-i18n="notesCloudEdit"></p>
+      <h2 data-i18n="notesRefTitle"></h2>
+      <p data-i18n="notesRef"></p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer-placeholder"></div>
+</body>
+
+</html>

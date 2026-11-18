@@ -1,0 +1,195 @@
+/* Shared layout for the applet pages (loaded after the site stylesheet). */
+
+.applet-main {
+  max-width: 1500px;
+  padding: 1.25rem 1rem 2rem;
+}
+
+.applet-header h1 {
+  font-size: 1.6rem;
+  margin: 0.25rem 0 0.35rem;
+}
+
+.applet-back {
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.applet-back:hover {
+  text-decoration: underline;
+}
+
+.applet-lead {
+  max-width: 60rem;
+  margin-bottom: 1rem;
+}
+
+/* Controls on the left, drawing area on the right. */
+.applet-layout {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.applet-controls {
+  background: #f8f5f0;
+  border: 1px solid #dfd7ca;
+  border-radius: 4px;
+  padding: 0.85rem;
+  font-size: 0.9rem;
+}
+
+.applet-controls .form-label {
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}
+
+.applet-controls .control-group + .control-group {
+  margin-top: 0.8rem;
+}
+
+/* The slider track would otherwise have the colour of the panel. */
+.applet-controls .form-range {
+  --bs-secondary-bg: #dfd7ca;
+}
+
+/* Small field for the seed of a random generator, next to a menu. */
+.applet-controls .applet-seed {
+  flex: 0 0 4.4rem;
+  width: 4.4rem;
+}
+
+.applet-controls [hidden] {
+  display: none !important;
+}
+
+.applet-controls output {
+  font-variant-numeric: tabular-nums;
+}
+
+.applet-stage {
+  min-width: 0;
+}
+
+.applet-canvas {
+  display: block;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #dfd7ca;
+  border-radius: 4px;
+}
+
+/* Square figure of a point-cloud applette. The 2D drawing and the 3D view
+   occupy the same place and one of them is shown at a time. */
+.cloud-figure {
+  position: relative;
+  width: 100%;
+  max-width: min(680px, 78vh);
+  aspect-ratio: 1 / 1;
+}
+
+.cloud-figure > .applet-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.cloud-figure > [hidden] {
+  display: none;
+}
+
+/* A finger on empty space scrolls the page. A double tap does not zoom. */
+.cloud-figure > canvas,
+.cloud-figure > svg {
+  touch-action: manipulation;
+  cursor: crosshair;
+}
+
+.applet-status {
+  font-size: 0.85rem;
+  color: #6c757d;
+  min-height: 1.3em;
+  margin-top: 0.35rem;
+}
+
+.applet-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1rem;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.applet-legend .swatch {
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  border-radius: 2px;
+  margin-right: 0.35em;
+  vertical-align: -0.05em;
+}
+
+.applet-table {
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.applet-table th,
+.applet-table td {
+  padding: 0.2rem 0.5rem;
+  text-align: right;
+}
+
+.applet-table th:first-child,
+.applet-table td:first-child {
+  text-align: left;
+}
+
+.applet-notes {
+  max-width: 60rem;
+  margin-top: 1.5rem;
+}
+
+.applet-notes h2 {
+  font-size: 1.25rem;
+}
+
+/* Narrow screens, one column: the figure with its legend and status lines,
+   then the controls, then the other outputs (tables, further figures). */
+@media (max-width: 991.98px) {
+  .applet-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .applet-stage {
+    display: contents;
+  }
+
+  .applet-stage > .cloud-figure,
+  .applet-stage > .applet-canvas,
+  .applet-stage > .applet-legend,
+  .applet-stage > .applet-status {
+    order: -2;
+    margin-top: 0;
+  }
+
+  .applet-stage > .applet-legend:empty,
+  .applet-stage > .applet-status:empty {
+    display: none;
+  }
+
+  .applet-controls {
+    order: -1;
+  }
+}
+
+/* Applet index page */
+.applet-card img {
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-bottom: 1px solid #dfd7ca;
+  background: #fff;
+}

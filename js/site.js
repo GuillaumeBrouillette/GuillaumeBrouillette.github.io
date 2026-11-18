@@ -8,7 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const footerPlaceholder = document.getElementById("footer-placeholder");
 
   const page = navbarPlaceholder?.dataset.page || "home";
-  const lang = navbarPlaceholder?.dataset.lang || "fr";
+  // Applet pages use data-lang="auto": one file serves both languages.
+  const lang = getSiteLang();
+  if (navbarPlaceholder) navbarPlaceholder.dataset.lang = lang;
+  document.documentElement.lang = lang;
+  const switchByQuery = navbarPlaceholder?.dataset.switch === "query";
 
   // Build a root-absolute URL for a given page in a given language.
   const pageUrl = (lng, pg) => `/${lng}/${pg === "home" ? "index" : pg}.html`;
@@ -43,7 +47,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
           el.addEventListener("click", e => {
             e.preventDefault();
-            window.location.href = pageUrl(el.dataset.lang, page);
+            if (switchByQuery) {
+              const u = new URL(window.location.href);
+              u.searchParams.set("lang", el.dataset.lang);
+              window.location.href = u.toString();
+            } else {
+              window.location.href = pageUrl(el.dataset.lang, page);
+            }
           });
         });
       });

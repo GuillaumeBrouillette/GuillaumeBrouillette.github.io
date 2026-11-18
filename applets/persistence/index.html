@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr" translate="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diagramme de persistance d'un nuage de points – Guillaume Brouillette</title>
+  <meta name="description" content="Applette interactive&nbsp;: complexe de Vietoris-Rips d'un nuage de points du plan ou de l'espace à une échelle réglable, avec son diagramme de persistance, son code-barres et ses courbes de Betti.">
+  <link rel="canonical" href="https://guillaumebrouillette.com/applets/persistence/">
+  <link rel="icon" href="/images/MDMcircle.svg">
+  <link rel="stylesheet" href="/css/bootswatch-sandstone.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/applets/applets.css">
+  <style>
+    /* The figure of the complex is smaller than in the other point-cloud
+       applettes, because the other plots share the stage with it. */
+    .persistence-complex .cloud-figure {
+      max-width: min(460px, 78vh);
+    }
+
+    /* Wide screens: the complex and the persistence diagram side by side,
+       then the row of the barcode and the Betti curves, then the legend and
+       the status lines. */
+    @media (min-width: 992px) {
+      .persistence-stage {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 1rem;
+      }
+
+      .persistence-stage > :not(figure) {
+        grid-column: 1 / -1;
+      }
+
+      .persistence-stage > .row {
+        margin-top: 0;
+      }
+    }
+
+    /* Narrow screens: the shared stylesheet puts the legend and the status
+       lines before the controls. The complex goes there with them, and the
+       other plots come after the controls. */
+    @media (max-width: 991.98px) {
+      .applet-stage > .persistence-complex {
+        order: -2;
+      }
+    }
+  </style>
+
+  <!-- Three.js 0.160, local copy in /js/vendor/three -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "/js/vendor/three/three.module.min.js",
+        "three/addons/": "/js/vendor/three/addons/"
+      }
+    }
+  </script>
+  <script src="/js/i18n.js" defer></script>
+  <script src="/js/site.js" defer></script>
+  <script src="/js/bootstrap.bundle.min.js" defer></script>
+  <script src="/applets/applets.js" defer></script>
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <div id="navbar-placeholder" data-page="applets" data-lang="auto" data-switch="query"></div>
+  <main class="applet-main container-fluid">
+    <header class="applet-header">
+      <a class="applet-back" data-applets-link href="/fr/applets.html">← <span data-i18n="back"></span></a>
+      <h1 data-i18n="title"></h1>
+      <p class="applet-lead" data-i18n="lead"></p>
+    </header>
+    <div class="applet-layout">
+      <aside class="applet-controls" id="panel"></aside>
+      <section class="applet-stage persistence-stage">
+        <figure class="persistence-complex mb-0">
+          <figcaption class="figure-caption mb-1" data-i18n="capComplex"></figcaption>
+          <div class="cloud-figure" id="figure-complex">
+            <canvas class="applet-canvas" id="canvas-complex" role="img"></canvas>
+            <div class="applet-canvas" id="view3d" hidden></div>
+          </div>
+        </figure>
+        <figure class="mb-0">
+          <figcaption class="figure-caption mb-1" data-i18n="capDiagram"></figcaption>
+          <canvas class="applet-canvas" id="canvas-diagram" role="img" style="touch-action: auto"></canvas>
+        </figure>
+        <div class="row g-3">
+          <figure class="col-12 col-xl-4 mb-0">
+            <figcaption class="figure-caption mb-1" data-i18n="capBarcode"></figcaption>
+            <canvas class="applet-canvas" id="canvas-barcode" role="img" style="touch-action: auto"></canvas>
+          </figure>
+          <figure class="col-sm-6 col-xl-4 mb-0">
+            <figcaption class="figure-caption mb-1" data-i18n="capBetti0"></figcaption>
+            <canvas class="applet-canvas" id="canvas-betti0" role="img" style="touch-action: auto"></canvas>
+          </figure>
+          <figure class="col-sm-6 col-xl-4 mb-0">
+            <figcaption class="figure-caption mb-1" data-i18n="capBetti1"></figcaption>
+            <canvas class="applet-canvas" id="canvas-betti1" role="img" style="touch-action: auto"></canvas>
+          </figure>
+          <figure class="col-sm-6 col-xl-4 mb-0" hidden>
+            <figcaption class="figure-caption mb-1" data-i18n="capBetti2"></figcaption>
+            <canvas class="applet-canvas" id="canvas-betti2" role="img" style="touch-action: auto"></canvas>
+          </figure>
+        </div>
+        <div class="applet-legend">
+          <span><span class="swatch" style="background: rgb(228, 26, 28)"></span><span data-i18n="legendH0"></span></span>
+          <span><span class="swatch" style="background: rgb(55, 126, 184)"></span><span data-i18n="legendH1"></span></span>
+          <span id="legend-h2" hidden><span class="swatch" style="background: rgb(77, 175, 74)"></span><span data-i18n="legendH2"></span></span>
+          <span><span class="swatch" style="background: rgb(255, 165, 0)"></span><span data-i18n="legendScale"></span></span>
+        </div>
+        <div class="applet-status" id="status"></div>
+        <div class="applet-status" id="hint"></div>
+      </section>
+    </div>
+    <section class="applet-notes">
+      <h2 data-i18n="notesComplexTitle"></h2>
+      <p data-i18n="notesComplex"></p>
+      <p data-i18n="notesComplex3d"></p>
+      <h2 data-i18n="notesReadTitle"></h2>
+      <p data-i18n="notesRead1"></p>
+      <p data-i18n="notesRead2"></p>
+      <p data-i18n="notesRead3"></p>
+      <p data-i18n="notesRead4"></p>
+      <h2 data-i18n="notesCloudTitle"></h2>
+      <p data-i18n="notesCloudData"></p>
+      <p data-i18n="notesCloudEdit"></p>
+      <p data-i18n="notesCloudUpdate"></p>
+    </section>
+  </main>
+  <div id="footer-placeholder"></div>
+</body>
+</html>
